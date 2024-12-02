@@ -1,0 +1,76 @@
+<section id="book-an-appt" class="docGenie-bkgrd">
+  <div class="docGenie-container mt-4 mb-3">
+<!--       <div style="text-align:center ;">
+      <form [formGroup]="registerfrmgrp" autocomplete="off" novalidate >
+        <div class="row justify-content-center">
+          <div class="col col-6 col-lg-6">
+            <mat-form-field [style.fontSize.px]=14 class="match_parent" >
+              <label>Search Doctor</label>
+              <input matInput type="text" placeholder="Please enter Name / Speciality to Search " formControlName="srchstr" id="srchstr" appearance="outline">
+              <mat-error *ngIf="hasError('srchstr', 'required')">Search string required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col col-3 col-lg-3">  
+            <label>&nbsp;</label>
+            <button class="neo-mybutton match_parent mt-4" (click)="Search()">Search</button>
+          </div>  
+        </div>  
+      </form>
+      </div> -->
+      <div class="page-title mb-2">Doctor informations !</div>
+      <div class="row justify-content-center mt-4 mb-3">
+        <div class="col col-4 col-lg-4">
+          <!-- Dropdown for selecting which field to filter by -->
+          <mat-select placeholder="Search By ..." [(ngModel)]="filterField" class="match_parent" >
+            <mat-option value="name">Doctor Name</mat-option>
+            <mat-option value="language">Language</mat-option>
+            <mat-option value="specialty">Specialty</mat-option>
+          </mat-select>
+          <p>* Search by Doctor Name, Language Spoken, Specialty</p>
+        </div>
+        <div class="col col-8 col-lg-8">  
+          <!-- Input field for search query -->
+          <input type="text" class="match_parent" [(ngModel)]="searchQuery" placeholder="Search..." (input)="applyFilter()" />
+        </div>  
+      </div>
+      <a *ngIf="!isASR" routerLink="/doctor_doc_details" style="float:right;" class="page-title docGenie-blue">Doctor Onboarded Details</a>
+      <div class="white-top-orange-box mt-5" style="padding: 4%;">
+        <p><span style="font-weight:bold ;">Count : </span>{{count}} </p>
+        <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+          <div class="col col-12 col-lg-12">
+  
+            <mat-table [dataSource]="MyDataSource">
+  
+              <!-- Age Definition -->
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let doctordetail"><p><a (click)="slotAvailabitity(doctordetail)" class="neo-link"> {{doctordetail.docdet_FullName}}</a> (<span class="dot {{getcolor(doctordetail.docdet_status)}}"></span> {{drstatus}})<br>({{doctordetail.docdet_special}})<br><b>Video Fees :</b> ₹ {{doctordetail.docdet_fees}} <br><span *ngIf ="getstatus(doctordetail.docdet_clinic)"><b>Clinic Fees :</b> ₹ {{doctordetail.docdet_cfees}}</span><br><span class="active">{{getFUPStatus(doctordetail.docdet_fc)}}</span><br><b>Languages Spoken : </b> {{doctordetail.docdet_lang}}</p></mat-cell>
+              </ng-container>
+  
+  
+              <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef> Email/Contact </mat-header-cell>
+                <mat-cell *matCellDef="let doctordetail"> {{doctordetail.docdet_email}} <br> <br> {{doctordetail.docdet_contact}} </mat-cell>
+              </ng-container>
+  
+              <ng-container matColumnDef="postaddress">
+                <mat-header-cell *matHeaderCellDef> Clinical Address and Timings </mat-header-cell>
+                <mat-cell *matCellDef="let doctordetail" innerHTML ="{{doctordetail.docdet_clinicloc}}" class="notes-text"> <!-- {{doctordetail.docdet_clinicloc}} --> </mat-cell><!--  -->
+              </ng-container>
+  
+                <!-- Header and Row Declarations without actions-->
+                <mat-header-row *matHeaderRowDef="['name', 'email', 'postaddress' ]; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['name', 'email', 'postaddress']"></mat-row>
+            </mat-table>
+            <mat-paginator 
+              [length]="5"
+              [pageSizeOptions]="[10, 15, 20]"
+              [showFirstLastButtons]="firstLastButtons"
+              (page)="onChangePage($event)">
+            </mat-paginator>
+          </div>  
+        </div>
+      </div>    
+    </div>
+  </section>      
+  

@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+  }
+  .test-name{
+    padding : 10px 0px;
+  }
+  .mat-mdc-card-title
+  {
+    color:#00a8cc;
+    text-align: left;
+  }
+  .count{
+    font-size: 14px;
+    font-family: 'Roboto-Bold';
+    color : #354c5c;
+  } 
+  .text-color{
+    color:black;
+    font-size: small;
+  }
+  .mat-mdc-card
+  {
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding-bottom: 10px;
+  } 
+  ::ng-deep .mat-mdc-card
+  {
+    border: 2px solid #f36f21;
+  }
+  input[type="file"]
+  {
+    visibility: hidden;
+    display: none;
+  }

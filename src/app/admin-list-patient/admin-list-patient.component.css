@@ -1,0 +1,34 @@
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+  .mdc-data-table__cell, .mdc-data-table__header-cell {
+    padding: 0px 10px 0 10px;
+} 
+.mat-mdc-card-title
+{
+  color:#00a8cc;
+  text-align: left;
+}
+.match_parent
+{
+  width: 100%;
+  display:block;
+}
+label{
+  text-align: left;
+  font-family: 'Roboto-Bold';
+  font-size: 16px;
+  margin-bottom: 2%;
+  color : #354c5c;
+}
+input
+{
+  color :#8a8a8a;
+  border-radius: 5px;
+  border: 2px solid #354c5c !important;
+  padding: 2%;
+}
+table {
+  width: 100%;
+}

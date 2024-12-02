@@ -1,0 +1,192 @@
+<div>
+  <div>
+    <section id="doc-header">
+      <div>
+        <mat-toolbar class="sticky-top">
+          <div class="logo-img">
+            <img src="/assets/images/docgenie-logo.jpg" style="height:40px;" (click)="onLogoClick()">
+          </div>
+          <a *ngIf="notlogged" href="tel:011-4118-3001" class="mobile-view"><img src="../assets/images/landingpage/call-icon-org.png"  alt="Call" class="call-icon"></a>
+          <span class="example-spacer"></span>
+  
+          <div fxShow="true" fxHide.lt-md="true" *ngIf="usermenu" class="main-menu">
+            <button (click)="onLinkClick('/our-doctors')">Book Doctor Consultation</button>
+            <button (click)="onLinkClick('/lab-test')">Book Lab Tests</button>
+            <button (click)="onLinkClick('/ourpackages')">Elderly Care Plans</button>
+            <button (click)="onBlogClick()">Write Ups on Health Issues</button>
+          </div>
+      
+          <div fxShow="true" fxHide.lt-md="true" *ngIf="adusermenu" class="main-menu">
+            <button (click)="onMenuClick('/list_doctor')">Doctor</button>
+            <button (click)="onMenuClick('/admin_list_patient')">Patient</button>
+            <button (click)="onMenuClick('/admin_list_appointments')">Appointments</button>
+            <button (click)="onMenuClick('/admin_list_presc')">PrescribedDetails</button>
+            <button (click)="onMenuClick('/promo')">Promo Code</button>
+            <button (click)="onMenuClick('/admin-list-labtest')">LabTest</button>
+            <button (click)="onMenuClick('/admin-list-packages')">Packages</button>
+            <button mat-button #menuTrigger3="matMenuTrigger" [matMenuTriggerFor]="reportMenu" class="main-sub" (mouseenter)="openMyMenu(menuTrigger3)">Reports</button>
+            <mat-menu #reportMenu="matMenu" yPosition="below" class="menu-below">  
+              <span (mouseleave)="closeMyMenu(menuTrigger3)">
+                <button mat-menu-item (click)="onMenuClick('/admin-ledger')" class="sub-menu">Ledger</button><mat-divider style="margin:5%;"></mat-divider>
+                <button mat-menu-item (click)="onMenuClick('/mis-reports')" class="sub-menu">MIS Reports</button>
+              </span>
+            </mat-menu>
+          </div>
+      
+          <div fxShow="true" fxHide.lt-md="true" *ngIf="asrmenu" class="main-menu">
+            <button (click)="onMenuClick('/list_doctor')">Doctor</button>
+            <button (click)="onMenuClick('/admin_list_patient')">Patient</button>
+            <button (click)="onMenuClick('/admin_list_appointments')">Appointments</button>
+            <button (click)="onMenuClick('/admin_list_presc')">PrescribedDetails</button>
+            <button (click)="onMenuClick('/admin-list-labtest')">LabTest</button>
+            <button (click)="onMenuClick('/admin-list-packages')">Packages</button>
+            <button (click)="onMenuClick('/promo')">Promo Code</button>
+          </div>
+      
+      
+            <span class="example-spacer"></span><span class="example-spacer"></span><span class="example-spacer"></span>
+              <span class="example-spacer"></span> 
+              <a (click)="onLogClick()" class="head-button logout-btn"><img src='{{"/assets/images/new-UI/"+ loginImg}}' class="login-icon">{{loginText}}</a> 
+               
+              <div fxShow="true" fxHide.gt-sm="true">
+                <button mat-icon-button (click)="sidenav.toggle()">
+                  <mat-icon>menu</mat-icon>
+                </button>
+              </div>     
+        </mat-toolbar>
+      </div>
+  
+      <mat-sidenav-container fxFlexFill class="example-container">
+        <mat-sidenav color="primary" #sidenav fxLayout="column" mode="over" opened="false" fxHide.gt-sm="true"><!-- (click)="sidenav.close()" -->
+          <div fxLayout="column" *ngIf="usermenu">
+            <button mat-button (click)="onLinkClick('/our-doctors')" class="main-menu">Book Doctor Consultation</button>
+            <button mat-button (click)="onLinkClick('/lab-test')" class="main-menu">Book Lab Tests</button>
+            <button mat-button (click)="onLinkClick('/ourpackages')" class="main-menu">Elderly Care Plans</button>
+            <button mat-button (click)="onBlogClick()" class="main-menu">Write Ups on Health Issues</button>
+          </div>
+  
+          <div fxLayout="column" *ngIf="adusermenu">
+            <button mat-button class="main-menu" (click)="onMenuClick('/list_doctor')">Doctor</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/admin_list_patient')">Patient</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/admin_list_appointments')">Appointments</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/admin_list_presc')">PrescribedDetails</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/promo')">Promo Code</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/admin-list-labtest')">LabTest</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/admin-list-packages')">Packages</button>  
+            <button mat-button #menuTrigger3="matMenuTrigger" [matMenuTriggerFor]="reportMenu" class="main-sub">Reports</button>
+              <mat-menu #reportMenu="matMenu" yPosition="below" class="menu-below">  
+                  <button mat-menu-item (click)="onMenuClick('/admin-ledger')" class="sub-menu">Ledger</button><mat-divider style="margin:5%;"></mat-divider>
+                  <button mat-menu-item (click)="onMenuClick('/mis-reports')" class="sub-menu">MIS Reports</button>
+              </mat-menu>        
+          </div>
+  
+          <div fxLayout="column" *ngIf="asrmenu">
+            <button mat-button class="main-menu" (click)="onMenuClick('/list_doctor')">Doctor</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/admin_list_patient')">Patient</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/admin_list_appointments')">Appointments</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/admin_list_presc')">PrescribedDetails</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/admin-list-labtest')">LabTest</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/admin-list-packages')">Packages</button>
+            <button mat-button class="main-menu" (click)="onMenuClick('/promo')">Promo Code</button>
+          </div>
+          
+          <a (click)="onLogClick()" class="head-side-button logout-btn"><img src='{{"/assets/images/new-UI/"+ loginImg}}' class="login-icon">{{loginText}}</a>
+        </mat-sidenav>
+  
+        <mat-sidenav-content fxFlexFill>
+  
+          <router-outlet></router-outlet>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+    </section> 
+  </div>
+
+  <div class="footer-container neo-orange-top">
+    <div class="docGenie-container">
+
+      <div class="row mt-4">
+        <div class="col col-md-6 col-lg-3 col-sm-12 col-12 foot-col">
+          <div class="Footer-title">Contact Us</div>
+          <div class="Footer-item">
+            <img src="/assets/images/new-UI/call-footer.png" style="margin-right:15px;"><b>Between 9am to 8pm</b><br><b >011-4118 3001</b></div>
+          <div class="Footer-item">
+            <img src="/assets/images/new-UI/msg-hover-side.png" style="margin-right:15px;"><b>Whatsapp Message at</b><br><b>+91 98 1809 3267</b></div>
+          <div class="Footer-item">
+            <img src="/assets/images/new-UI/mail-footer.png" style="margin-right:15px;"><b>support&#64;docgenie.in</b></div>
+        </div>
+
+        <div class="col col-md-6 col-lg-2 col-sm-12 col-12 foot-col">
+          <div class="Footer-title">Quick Links</div>
+          <div class="Footer-item neo-hover" (click)="onLinkClick('/about-us')">About us</div>
+          <div class="Footer-item neo-hover" (click)="onLinkClick('/blogs')">Blog</div>
+          <div class="Footer-item neo-hover" (click)="onLinkClick('/faq')">FAQs</div>
+          <div class="Footer-item neo-hover" (click)="onLinkClick('/contact-us')">Contact us</div>
+        </div>
+
+        <div class="col col-md-6 col-lg-4 col-sm-12 col-12 foot-col">
+          <div class="row">
+            <div class="Footer-title">Online Booking & Appointments</div>
+            <div class="col col-md-6 col-sm-6 col-6">
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/general-physicians')">General Physician</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/pediatrician')">Pediatrics</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/ent')">Otolaryngology (ENT)</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/dermatologist')">Dermatology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/psychiatrists')">Psychiatry</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/gynaecologist-obstretician')">Obstetrics & Gynaecology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/urogynecologist')">Urogynecology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/psychologist')">Psychology/Therapy</div> 
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/cardiologist')">Cardiology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/pulmonologist')">Pulmonology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/gastroenterologist')">Gastroenterology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/painmanagement')">Pain Management</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/ophthalmology')">Ophthalmology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/dietician')">Dietician/Nutrition</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/physiotherapist')">Physiotherapy</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/neurologist')">Neurology</div>
+            </div>
+            <div class="col col-md-6 col-sm-6 col-6">
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/neurosurgery')">Neurosurgery</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/endocrinologist')">Endocrinology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/pediatric-endocrinologists')">Pediatric Endocrinology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/nephrologist')">Nephrology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/dentists')">Dentistry</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/homeopathy')">Homeopathy</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/ayurveda')">Ayurveda</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/surgeon')">General Surgery</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/spine-surgeon')">Spine Surgeon</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/infectious-diseases')">Infectious Diseases</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/oncology')">Oncology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/orthopedics')">Orthopedics</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/speech-therapist')">Speech Therapist</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/sexologist')">Sexologist and Psychiatry</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/urologist')">Urology</div>
+              <div class="Footer-item neo-hover" (click)="onLinkClick('/quit-smoking')">Quit Smoking</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-md-6 col-lg-3 col-sm-12 col-12 foot-col">
+          <div class="row">
+            <div class="col col-md-12 col-sm-12 col-12">
+              <div class="Footer-title">Follow Us</div>
+              <div class="Footer-item social-media mt-4">
+                <a href="https://www.facebook.com/docgenieindia" target="_blank"><img src="/assets/images/new-UI/facebook-footer.png"></a>
+                <a href="https://twitter.com/docgenieindia" target="_blank"><img src="/assets/images/new-UI/twitter-footer.png"></a>
+                <a href="https://www.linkedin.com/company/docgenie" target="_blank"><img src="/assets/images/new-UI/linked-in-footer.png"></a>
+                <a href="https://www.instagram.com/docgenieindia/?hl=en" target="_blank"><img src="/assets/images/new-UI/insta-footer.png"></a>
+                <a href="https://www.youtube.com/channel/UCGFNiS-XLeZi0dZhjmXKRvA" target="_blank"><img src="/assets/images/new-UI/you-tube-footer.png"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr style="color: white;background-color: white;">
+      <div class="Footer-item alignLeft">© Copyright 2021, All rights reserved with <b>DocGenie</b></div>
+      <div class="Footer-item alignRight foot-tp mb-2">
+        <div class="inline cr neo-hover" (click)="onTandCClick()">Terms & Conditions</div>
+        <div class="inline neo-hover" (click)="onPrivacyClick()">Privacy Policy</div>
+      </div>
+    </div>
+  </div>
+</div>

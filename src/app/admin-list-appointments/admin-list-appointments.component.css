@@ -1,0 +1,168 @@
+.mat-mdc-card-title
+{
+  color:#00a8cc;
+  text-align: left;
+}
+
+span{
+  font-size: 14px;
+  font-family: 'Roboto-Bold';
+}
+
+.neo-mybutton{
+    background-color: #f36f21;
+    color: white;
+}
+.text-color{
+  color:black;
+  font-size: small;
+}
+
+.white-blue-btn{
+  padding: 1% 0;
+  border-width: 2px;
+}
+
+.fileUpload{
+  cursor: pointer;
+}
+
+.mat-mdc-card
+{
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding-bottom: 10px;
+}
+
+::ng-deep .mat-mdc-card
+{
+  border: 2px solid #f36f21;
+}
+
+#book-an-appt{
+  font-family: 'Roboto-Regular';
+  font-size: 16px;
+  color : #354c5c;
+  padding-top: 3%;
+  text-align: left;
+  padding-bottom: 10%;
+}
+
+.main-section .white-box{
+  border-radius: 10px;
+  border-top-style: solid;
+  border-top-color: #f36f21;
+  border-top-width:thick;
+}
+
+.home-page-title{
+  text-align: center;
+  font-size: 30px;
+  color: black;
+}
+
+mat-expansion-panel{
+  margin: 2% auto;
+}
+   
+.match_parent
+{
+  width: 100%;
+  display:block;
+}
+
+label{
+  text-align: left;
+  font-family: 'Roboto-Bold';
+  font-size: 16px;
+  margin-bottom: 2%;
+  color : #354c5c;
+}
+label span{
+  font-family: 'Roboto-Regular';
+}
+
+input[type="file"]
+{
+  visibility: hidden;
+  display: none;
+}
+
+table
+{
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.td-bold{
+  font-family: 'Roboto-Bold';
+}
+
+td > span :first-child{
+  padding-left: 10%;
+  padding-right: 5%;
+}
+
+.no-Slots{
+  font-size: 14px;
+  color: #00a8cc;
+  text-align: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  .docGenie-container{
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+
+}
+@media only screen and (max-width: 768px) {
+  label{
+    font-size: 14px;
+  }
+
+  td > span{
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+ .home-page-title{
+   font-size: 24px;
+ }
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+td.mat-mdc-cell{
+  padding: 4px;
+  border-bottom-color: rgba(0,0,0,.12);}
+  td.mat-mdc-cell:first-of-type{padding-left: 25px;}
+  th.mat-mdc-header-cell{
+    padding-top: 20px;
+    text-align: center;
+  }

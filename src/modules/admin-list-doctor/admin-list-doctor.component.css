@@ -1,0 +1,41 @@
+.mat-mdc-card-title
+{
+color:#00a8cc;
+text-align: left;
+}
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+::ng-deep .mat-form-field-underline {
+    display: none;
+  } 
+.match_parent
+{
+width: 100%;
+display:block;
+}
+.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+.active{    background-color: #6EC531;}
+.passive {    background-color: #d3d3d3;}
+.neo-link{    text-decoration: underline;    color: #f36f21;    cursor:pointer;  }
+label{
+text-align: left;
+font-family: 'Roboto-Bold';
+font-size: 16px;
+margin-bottom: 2%;
+color : #354c5c;
+}
+input, mat-select
+{
+color :#8a8a8a;
+border-radius: 5px;
+border: 2px solid #354c5c !important;
+background: none;
+}
+input{padding: 2%;} mat-select{padding: 3%;}
+table {
+width: 100%;
+}

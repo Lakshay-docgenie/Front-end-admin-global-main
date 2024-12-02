@@ -1,0 +1,493 @@
+<section id="book-an-appt" class="docGenie-bkgrd" *ngIf="ispatient">
+    <div class="docGenie-container">
+      <div class="row">
+  
+        <div class="col col-lg-3 col-md-4 side-section">
+          <div class="white-box nav-dash-joined">
+            <div class="row welcome-button">
+              <div class="col col-lg-12 col-md-12 col-sm-12 col-12 pat-display">
+                <span class="side-text">Welcome,<br><span class="pat-name"> {{welcomeName}} !</span></span>
+              </div>
+            </div>
+            <div class="row pat-button hover-btn">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/pat-hover-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                <span class="side-text">Personal Information</span>
+              </div>
+            </div><hr>
+            <div class="row reg-button" (click)="onNewPat()">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/reg-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-md-10 col-sm-10 col-10 reg-display">
+                <span class="side-text">Register a New Patient</span>
+              </div>
+            </div><hr>
+            <div class="row reg-button" (click)="onChangePat()">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/reg-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-md-10 col-sm-10 col-10 reg-display">
+                <span class="side-text">Change Patient</span>
+              </div>
+            </div><hr>
+            <div class="row help-button" (click)="onHelpPat()">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/help-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-md-10 col-sm-10 col-10 help-display">
+                <span class="side-text">Help & Support</span>
+              </div>
+            </div>
+          </div>
+          <div class="nav-dash-seperate">
+            <div class="row white-box dash-button" (click)="onDash()">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                <span class="side-text">Dashboard</span>
+              </div>
+            </div>
+            <div class="row white-box past-button" (click)="onPastAppPres()">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/past-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                <span class="side-text">Past Appointments & Prescriptions</span>
+              </div>
+            </div>
+            <div class="row white-box lab-button" (click)="onPastLabTest()">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/lab-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10">
+                <span class="side-text">Past Lab Test <!-- Reports --></span>
+              </div>
+            </div>
+            <div class="row white-box docs-button" (click)="onPatFileList()">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/docs-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                <span class="side-text">Upload Documents</span>
+              </div>
+            </div>
+            <div class="row white-box msg-button" (click)="onMsgBox()">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/msg-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                <span class="side-text">Message Box</span>
+              </div>
+            </div>
+            <div class="row white-box msg-button" (click)="onVitals()">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/past-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                <span class="side-text">Monitor Essential Parameters</span>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col col-lg-9 col-md-7 main-section">
+          <div class="white-top-orange-box">
+            <div class="close-button" (click)="divClose()"> 
+              <span class="close-text">Close</span> <mat-icon class="close-icon">close</mat-icon>
+            </div>
+            <div class="home-page-title mt-5">{{screentitle}}</div>
+            <div class="step-3">
+              <div class="row docGenie-bkgrd" style="border-radius: 10px; padding: 3%;">    
+                <span class="neo-mad-field neo-mad-text">* Mandatory Fields</span>
+                
+                <div class="col col-12">                  
+                  <div class="register-page"> 
+                    <form [formGroup]="registerfrmgrp" autocomplete="off" novalidate (ngSubmit)="UpdatePatient(registerfrmgrp.value)">
+                                       
+                      <!-- First Row (Title) -->
+                      <div class="row">
+                  
+                        <div class="col col-12 col-md-12 col-lg-12">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>Title</label>
+                            <mat-select class="inp-pad" placeholder="Select Title" formControlName="title" id="title">
+                              <mat-option *ngFor="let title of titlelist" [value]="title">
+                                {{title}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+  
+                      <!-- Second Row (First Name, Last Name) -->
+                      <div class="row">
+                        <!-- First Name -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                            <label>Name <span class="neo-mad-field">*</span></label>
+                            <input matInput type="text" placeholder="FirstName" formControlName="firstname" id="firstname" [readonly]="selfuser" required>
+                            <mat-error *ngIf="hasError('firstname', 'required')">First Name is required</mat-error>
+                            <mat-error *ngIf="hasError('firstname', 'maxlength')">Not more then 45 characters long</mat-error>
+                          </mat-form-field>
+                        </div>
+                  
+                        <!-- Last Name -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>&nbsp;</label>
+                            <input matInput type="text" placeholder="LastName" formControlName="lastname" id="lastname" [readonly]="selfuser" required>
+                            <mat-error *ngIf="hasError('lastname', 'required')">Last Name is required</mat-error>
+                            <mat-error *ngIf="hasError('lastname', 'maxlength')">Not more then 45 characters long</mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                  
+                      <!-- Third Row (Mobile Number, Email) -->
+                      <div class="row">
+                        <!-- Mobile Number -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                            <label>Mobile Number <span class="neo-mad-field">*</span></label>
+                            <input matInput type="text" placeholder="Mobile Number" formControlName="phonenumber" id="phonenumber" required readonly>
+                            <mat-error *ngIf="hasError('phonenumber', 'required')">Mobile Number required</mat-error>
+                            <mat-error *ngIf="hasError('phonenumber', 'pattern')">Only numbers allowed</mat-error>
+                            <mat-error *ngIf="hasError('phonenumber', 'minlength')">Should be 10 characters long</mat-error>
+                            <mat-error *ngIf="hasError('phonenumber', 'maxlength')">Should be 10 characters long</mat-error>
+                          </mat-form-field>
+                        </div>
+                  
+                        <!-- Email -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14  *ngIf="ispatient">
+                            <label>Email <span class="neo-mad-field">*</span></label>
+                            <input matInput type="text" placeholder="Your Email ID" formControlName="email" id="email">
+                            <mat-error *ngIf="hasError('email', 'email')">Not a valid email</mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      
+                      <!-- Fourth Row (Age, Gender) -->
+                      <div class="row">
+                  
+                        <!-- Age -->
+                        <!-- <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>Age <span class="neo-mad-field">*</span></label>
+                            <mat-select placeholder="Select Age" formControlName="patage" id="patage" required>
+                              <mat-option *ngFor="let age of age_list" [value]="age" >{{age}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hasError('patage', 'required')">Age is required</mat-error>
+                          </mat-form-field>
+                        </div> -->
+  
+                        <!-- date of birth -->
+                        <div class="col col-12 col-md-6 col-lg-6 mt-2">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>Date of birth <span class="neo-mad-field">*</span></label>
+                                <input matInput [matDatepicker]="picker" [max]="maxDate" [formControl]="dateofbirth" id="dateofbirth" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)" (click)="picker.open()" readonly> <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle><br>   -->                          
+                                <mat-datepicker #picker ></mat-datepicker>
+                            <mat-error *ngIf="hasError('dateofbirth','required')">Date Of Birth is required</mat-error>
+                          </mat-form-field>
+                        </div>
+  
+                        <!-- Gender -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>Gender <span class="neo-mad-field">*</span></label>
+                            <mat-select  placeholder="Select Gender" formControlName="gender" id="gender" required>
+                              <mat-option *ngFor="let gen of genderlist" [value]="gen">{{gen}}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="hasError('gender', 'required')">Gender is required</mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                                <!-- <mat-form-field  [style.fontSize.px]=14 >
+                                  <label>Preferred language</label>
+                                  <mat-select  formControlName="preflang" id="preflang">
+                                    <mat-option *ngFor="let lang of lang_list" [value]="lang">
+                                      {{lang}}
+                                    </mat-option>
+                                  </mat-select>
+                                </mat-form-field> -->
+  
+                      <!-- Fifth Row (State, City) -->
+                      <div class="row">
+                        <!-- State -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>State <span class="neo-mad-field">*</span></label>
+                            <mat-select placeholder="Select State" formControlName="state"  (selectionChange)="onFoodSelection2(selectedFood2)" [(ngModel)]="selectedFood2" required>
+                              <mat-option *ngFor="let i of data" [value]="i">
+                                      {{i}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                  
+                        <!-- City -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>City <span class="neo-mad-field">*</span></label>
+                            <mat-select placeholder="Select City" formControlName="city" (selectionChange)="onFoodSelection3(selectedFood3)" [(ngModel)]="selectedFood3" required>
+                              <mat-option *ngFor="let i of city_content" [value]="i">
+                                      {{i}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                  
+                      <!-- Sixth Row (Address, Pincode) -->
+                      <div class="row">
+                      <!-- Address -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>Address</label>
+                            <input matInput type="text" placeholder="Enter Your Address" formControlName="postaladdress" id="postaladdress">
+                            <mat-error *ngIf="hasError('postaladdress', 'minlength')">Minimum 5 characters long</mat-error>
+                          </mat-form-field>
+                        </div>
+                  
+                        <!-- Pincode -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>Pincode</label>
+                            <input matInput type="text" placeholder="Enter Pincode" formControlName="pincode" id="pincode">
+                            <mat-error *ngIf="hasError('pincode', 'pattern')">Only numbers allowed</mat-error>
+                            <mat-error *ngIf="hasError('pincode', 'minlength')">Incorrect pincode</mat-error>
+                            <mat-error *ngIf="hasError('pincode', 'maxlength')">Should be 6 characters long</mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                  
+                      <!-- Seventh Row (Height(in ft) ,Height(in inches)) -->
+                      <div class="row">
+                  
+                        <!-- Height(in ft) -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>Height(in ft)</label>
+                            <mat-select  formControlName="heightft" id="heightft">
+                              <mat-option *ngFor="let height of height_list" [value]="height" >{{height}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+  
+                        <!-- Height(in inches) -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                            <label>Inches</label>
+                            <mat-select  formControlName="heightin" id="heightin">
+                              <mat-option *ngFor="let height of height_list" [value]="height" >{{height}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>  
+                  
+                      <!-- Seventh Row (Weight, Blood Group) -->
+                      <div class="row">
+                        <!-- Weight -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>Weight(In Kgs)</label>
+                            <mat-select placeholder="Select Weight" formControlName="weight" id="weight">
+                              <mat-option *ngFor="let weight of weight_list" [value]="weight" >{{weight}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                  
+                        <!-- Blood Group -->
+                        <div class="col col-12 col-md-6 col-lg-6">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>Blood Group</label>
+                            <mat-select placeholder="Select Blood Group" formControlName="bloodgrp" id="bloodgrp">
+                              <mat-option *ngFor="let bloodgrp of bloodgrp_list" [value]="bloodgrp" >{{bloodgrp}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                  
+                      <!-- Eight Row (Allergies) -->
+                      <div class="row">
+                      <!-- Allergies -->
+                        <div class="col col-12 col-md-12 col-lg-12">
+                          <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                            <label>Allergies</label>
+                            <input matInput class="inp-pad" type="text" placeholder="Allergies to medication" formControlName="knownallg" id="knwonallg">
+                          </mat-form-field>
+                        </div>
+                      </div>
+                  
+                      <div class="row mt-3">
+                        <div class="col col-12">
+                          <mat-card-actions  *ngIf="ispatient"> <!-- align="center" -->
+                            <button class="match_parent neo-mybutton" [disabled]="registerfrmgrp.invalid || !registerfrmgrp.dirty " >Save</button>
+                          </mat-card-actions>
+                        </div>
+                      </div>
+                    </form>
+                     
+                  </div>
+            
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+  
+  <div class="row" *ngIf="!ispatient">
+    <div class="col col-lg-12 main-section">    
+    
+                <form [formGroup]="registerfrmgrp" autocomplete="off" novalidate (ngSubmit)="UpdatePatient(registerfrmgrp.value)">
+  
+                  <!-- Second Row (First Name, Last Name) -->
+                  <div class="row">
+                    <!-- First Name -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                        <label>Name</label>
+                        <input matInput type="text" placeholder="FirstName" formControlName="firstname" id="firstname" [readonly]="selfuser" required>
+                      </mat-form-field>
+                    </div>
+              
+                    <!-- Last Name -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>&nbsp;</label>
+                        <input matInput type="text" placeholder="LastName" formControlName="lastname" id="lastname" [readonly]="selfuser" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+              
+                  <!-- Third Row (Mobile Number, Email) -->
+                  <div class="row">
+                    <!-- Mobile Number -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                        <label>Mobile Number</label>
+                        <input matInput type="text" placeholder="Mobile Number" formControlName="phonenumber" id="phonenumber" required readonly>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  
+                  <!-- Fourth Row (Age, Gender) -->
+                  <div class="row">
+              
+                    <!-- Age -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>Age</label>
+                        <input matInput type="text" placeholder="Select Age" formControlName="patage" id="patage" readonly>
+                      </mat-form-field>
+                    </div>
+  
+                    <!-- Gender -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>Gender</label>
+                        <input matInput type="text" placeholder="Select Gender" formControlName="gender" id="gender" readonly>
+                      </mat-form-field>
+                    </div>
+                  </div>
+  
+                  <!-- Fifth Row (State, City) -->
+                  <div class="row">
+                    <!-- State -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>State</label>
+                        <input matInput type="text" placeholder="Select State" formControlName="state" [(ngModel)]="selectedFood2" readonly>
+                      </mat-form-field>
+                    </div>
+              
+                    <!-- City -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>City</label>
+                        <input matInput type="text" placeholder="Select City" formControlName="city" [(ngModel)]="selectedFood3" readonly>
+                      </mat-form-field>
+                    </div>
+                  </div>
+              
+                  <!-- Sixth Row (Address, Pincode) -->
+                  <div class="row">
+                  <!-- Address -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>Address</label>
+                        <input matInput type="text" placeholder="Enter Your Address" formControlName="postaladdress" id="postaladdress" readonly>
+                      </mat-form-field>
+                    </div>
+              
+                    <!-- Pincode -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>Pincode</label>
+                        <input matInput type="text" placeholder="Enter Pincode" formControlName="pincode" id="pincode" readonly>
+                      </mat-form-field>
+                    </div>
+                  </div>
+              
+                  <!-- Seventh Row (Height(in ft) ,Height(in inches)) -->
+                  <div class="row">
+              
+                    <!-- Height(in ft) -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>Height(in ft)</label>
+                        <input matInput type="text" formControlName="heightft" id="heightft" readonly>
+                      </mat-form-field>
+                    </div>
+  
+                    <!-- Height(in inches) -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                        <label>Inches</label>
+                        <input matInput type="text" formControlName="heightin" id="heightin" readonly>
+                      </mat-form-field>
+                    </div>
+                  </div>  
+              
+                  <!-- Seventh Row (Weight, Blood Group) -->
+                  <div class="row">
+                    <!-- Weight -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>Weight(In Kgs)</label>
+                        <input matInput type="text" placeholder="Select Weight" formControlName="weight" id="weight" readonly>
+                      </mat-form-field>
+                    </div>
+              
+                    <!-- Blood Group -->
+                    <div class="col col-12 col-md-6 col-lg-6">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>Blood Group</label>
+                        <input matInput type="text" placeholder="Select Blood Group" formControlName="bloodgrp" id="bloodgrp" readonly>
+                      </mat-form-field>
+                    </div>
+                  </div>
+              
+                  <!-- Eight Row (Allergies) -->
+                  <div class="row">
+                  <!-- Allergies -->
+                    <div class="col col-12 col-md-12 col-lg-12">
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                        <label>Allergies</label>
+                        <input matInput class="inp-pad" type="text" placeholder="Allergies to medication" formControlName="knownallg" id="knwonallg" readonly>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </form>
+   
+    </div>
+  
+  </div>
+  

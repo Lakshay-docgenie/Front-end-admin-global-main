@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+    <p>Do you want to logout?</p>
+  </div>
+  
+  <div mat-dialog-actions class="neo-center">
+    <button class="neo-mybutton" style="margin-right: 2%;" (click)="onNoClick()">No</button>
+    <button class="neo-mybutton" [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+  </div>

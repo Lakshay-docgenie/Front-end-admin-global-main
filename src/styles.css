@@ -1,0 +1,1044 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+/* RESET CSS BEGIN */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, /* ul, li, */
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 0%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+  background-color: white;
+
+}
+
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*RESET CSS END*/
+
+/* overcoming mat-form-field css  instead of */
+.mdc-text-field--filled:not(.mdc-text-field--disabled){
+  background-color: #d9e5f5 !important;
+}
+
+.mdc-text-field--filled {
+  --mdc-filled-text-field-active-indicator-height: 0px !important;
+  --mdc-filled-text-field-focus-active-indicator-height: 0px !important;
+}
+
+.mat-mdc-form-field-focus-overlay {
+  background-color: #d9e5f5 !important;
+}
+
+.mdc-button {
+  letter-spacing: normal;
+}
+
+.mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix  {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;}
+
+  .mdc-text-field__input::-webkit-calendar-picker-indicator {
+    display: block !important;
+  }
+/*  */
+.neo-center
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+::ng-deep .mat-form-field-underline {
+  display: none;
+} 
+@font-face{
+  font-family:'Roboto-Black';
+  src :local('assets/css/fonts/Roboto-Black.ttf'), url('assets/css/fonts/Roboto-Black.ttf') format('truetype');
+}
+@font-face{
+  font-family:'Roboto-Bold';
+  src :local('assets/css/fonts/Roboto-Bold.ttf'), url('assets/css/fonts/Roboto-Bold.ttf') format('truetype');
+}
+@font-face{
+  font-family:'Roboto-Regular';
+  src :local('assets/css/fonts/Roboto-Regular.ttf'), url('assets/css/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+strong,
+b {
+    font-weight: 700;
+}
+
+em,
+i {
+    font-style: italic;
+}
+
+a,
+a:hover{
+  text-decoration: none;
+}
+p,
+ul li,
+ol li {
+    font-family: 'Roboto-Regular';
+    font-size: 14px;
+    line-height: 24px;
+}
+
+body{
+  font-family : 'Roboto-Regular';
+  overflow-x : hidden;
+  color: #354c5c;
+}
+
+.docGenie-grey{
+  color: #354c5c;
+}
+.blue-title{
+  font-size: 20px;
+  color: #00a8cc;
+  font-family: 'roboto-regular';
+}
+.privacyTerms h3{ color: #00a8cc; } 
+.privacyTerms h5{ font-weight: bold; font-size: 16px; } 
+.privacyTerms {margin: 2%;}
+/* For the table display */
+.mat-mdc-cell{  line-height: 20px;}
+.mat-mdc-row{  padding: 1% 0%;}
+.mat-mdc-header-cell{  font-size: small;  font-weight: bold;  color: #00a8cc;  }
+
+.docGenie-container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.alignLeft {
+  float: left;
+}
+
+.alignRight {
+  float: right;
+}
+
+.textLeft{
+  text-align: left;
+}
+
+.textRight{
+  text-align: right;
+}
+.match_parent
+{
+  width: 100%;
+  display:block;
+}
+.mobile-view{
+  display: none;
+}
+
+.para-align{
+  text-align: left;
+  color: #354c5c;
+}
+
+#our-doctor{
+  padding-bottom: 3%;
+}
+
+#book-an-appt{
+  font-family: 'Roboto-Regular';
+  font-size: 16px;
+  color : #354c5c;
+  padding-top: 3%;
+  text-align: left;
+  padding-bottom: 10%;
+}
+
+.page-title{
+  font-family: "Roboto-Black;";
+  font-size: 30px;
+   text-align: center;
+   margin-bottom: 3%;
+}
+
+/*For border orange line */
+.neo-orange-bottom{
+  border-bottom: 2px solid #f36f21;
+}
+
+.neo-orange-top{
+  border-top: 2px solid #f36f21;
+}
+
+button:active,
+ngb-carousel:active {
+  outline: none;
+  border: none;
+  }
+
+  button:focus,
+  ngb-carousel:focus {outline:0;}
+  
+  .neo-link{
+    color: #00a8cc;
+    text-decoration: underline;
+    text-decoration-style: double;
+  }
+  
+  .neo-link:hover{
+    font-weight: bolder;
+    cursor: pointer;
+  }
+
+.scheduler_default_corner div:nth-of-type(2) {
+  display: none !important;
+}
+
+.my-panel {
+  overflow: hidden;
+  border-radius: 5px;
+  padding: 5px;
+  padding-top:10px;
+  padding-bottom: 10px;
+  box-shadow: 0;
+}
+
+.neo-progress
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.neo-mad-field{
+  color: #f36f21;
+}
+
+.neo-mad-text
+{
+  font-size: 14px;
+}
+
+  .font14{
+    font-size: 14px;
+  }
+
+  .font24{
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .white-top-orange-box{
+    border-radius: 10px;
+    border-top-style: solid;
+    border-top-color: #f36f21;
+    border-top-width:thick;
+    background-color: white;
+  }
+
+  .blue-top-white-box{
+    border-radius : 10px;
+    background-color : rgb(27, 168, 202);
+    box-shadow : 2.571px 3.064px 4px 0px rgba(0, 0, 0, 0.06);
+    border-top-style : solid;
+    border-top-color : white;
+    border-top-width : thick;
+    color : white;
+    text-align: center;
+  }
+
+  /* For Nav-Tabs in Profile and Dr-Input Page */
+
+  .nav-tabs{
+    padding-top: 2%;
+    padding-right: 2%;
+    padding-left: 2%;
+    background-color:#1ba8ca;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .nav-item{
+    color:white;
+    font-family: 'Roboto-Bold';
+    font-size: 18px;
+    text-align: center;
+    border: transparent;
+    background-color: #60c2da;
+    margin: 0 1%;
+  }
+  
+  .nav-link{
+    cursor: pointer;
+  }
+
+  .white-bkg{
+    background-color: white;
+    color: #00a8cc;
+  }
+  
+  .nav-item:active{
+    background-color: white;
+    border: none;
+  }
+  
+  .tab-pane{
+    padding-right: 5%;
+    padding-left: 5%;
+    font-family: 'Roboto-Bold';
+    font-size: 16px;
+    color: #354c5c;
+    padding-bottom: 10%;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .tab-info{
+    font-family: 'Roboto-Regular';
+    font-size: 14px;
+    background-color: white;
+    padding: 3%;
+  }
+
+  .tab-info p{
+    text-align: left;
+  }
+  
+@media(max-width:1024px){
+  .progress-flow{
+    display: none;
+  }
+
+  .progress-flow-mob{
+    display: inline-block;
+  }
+}
+
+.docGenie-blue{
+	color:#00a8cc;
+}
+
+.docGenie-orange{
+	color : #f36f21;
+}
+
+.neo-content-1
+{
+  padding:auto;
+  font-size: medium;
+  color:black;
+  text-align: justify;
+}
+
+.docGenie-bkgrd{
+  background-color: #d9e5f5;
+}
+
+.light-bkgrd{
+  background-color: #eef5ff;
+}
+
+.home-page-title{
+  font-family: 'Roboto-Black';
+  font-size: 36px;
+}
+
+
+/* SIDE_SECTION NAV_BAR CSS STARTS */
+
+.side-section,
+.faq-side{
+  color : #354c5c;
+}
+.pat-button,.reg-button,.help-button,.hover-btn,.chng-button,
+.dash-button,.past-button,.lab-button,.docs-button,.msg-button{
+  cursor: pointer;
+}
+
+.white-box,.white-box-plain{/* White colored box */
+  background-color: white;
+  text-align: left;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+.pat-button,.reg-button,.help-button,.chng-button{
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.nav-dash-seperate .white-box{
+  padding-bottom: 3%;
+}
+
+.side-section .white-box{
+  width: 90%;
+}
+
+.nav-dash-joined hr{
+  margin: 0;
+}
+.nav-dash-seperate .row,
+.welcome-button{
+  padding-top: 5%;
+}
+
+.nav-dash-joined .row,
+.nav-dash-seperate .row{
+  margin: 0;
+}
+
+.nav-dash-joined,
+.nav-dash-seperate .row{
+  margin-bottom: 5%;
+}
+
+.welcome-button{
+  background: #f36f21;
+  color: white;
+  cursor: text;
+  margin: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-bottom: 5%;
+}
+
+.side-icon {
+  vertical-align: middle;
+  padding-right: 4%;
+}
+
+.nav-dash-seperate .side-text,
+.pat-name{
+  font-family: 'Roboto-Bold';
+}
+
+.pat-name{
+  font-size: 18px;
+}
+
+.welcome-button .side-text{
+  font-size: 14px;
+}
+
+.welcome-button .pat-display{
+  padding-top: 5%;
+}
+
+.mobile-pat-display,
+.pat-display{
+  text-align: center;
+}
+
+.info-display{
+  padding-top: 3%;
+}
+
+.reg-display,
+.help-display{
+  padding-top: 1%;
+}
+
+@media only screen and (max-width: 420px) {
+
+  .home-page-title{
+    font-size: 24px;
+  }
+}
+
+.back-button{
+  float: left;
+  left : 15px;
+}
+
+.close-button{
+  float: right;
+  right : 25px;
+}
+/* SIDE_SECTION NAV_BAR CSS ENDS */
+
+/* DR-DISPLAY-FOR Book Appointment SPECIALITY PAGES CSS STARTS */
+#spec-dr-display{
+  font-family: 'Roboto-Regular';
+  font-size: 16px;
+  color : #354c5c;
+  padding-top: 1.5%;
+  text-align: left;
+  /* padding-bottom: 10%; */
+}
+ 
+.dr-display,
+.dr-img{
+  border-radius: 8px;
+}
+
+.dr-display{
+  padding-top: 2%;
+  padding-bottom: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  background-color: #eef5ff
+}
+
+.dr-display p{
+  margin: 2% 0%;
+}
+.dr-name,
+.dr-exp{
+  font-family: 'roboto-bold';
+}
+
+.dr-name,
+.step2-spec,.pack-doc-title{
+  font-size: 18px;
+}
+
+.step-3{
+  padding : 3%;
+}
+
+.dr-qual,
+.dr-exp,
+.dr-spl-qa-disp span{
+  font-size: 14px;
+}
+.dr-spl-qa-disp p,h2,h3,h4{
+  margin-bottom: 1%;
+}
+.step2-btn{
+  text-align: right;
+}
+
+.step2-btn button{
+  /* margin: 2%; */
+  border-radius: 5px;
+  margin-top: 4%;
+  margin-bottom: 2%;
+}
+
+.step2-btn span{
+  margin: 2%;
+  font-size: 14px;
+}
+
+.dr-cr:after {
+    content: "";
+    border: 1px solid #354c5c;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.view-dr-btn{
+  font-size: 14px;
+  color: #00a8cc;
+  background-color: white;
+  border: 1px solid #00a8cc;
+  padding: 3% 10%;
+  width: 90%;
+}
+
+.call-sprt-btn{
+  font-size: 14px;
+  color: white;
+  background-color: #7ed956;
+  padding: 3%;
+  width: 90%;
+  border : none;
+}
+
+.white-blue-btn{
+  font-family: 'Roboto-Regular';
+  font-size: 14px;
+  color: #00a8cc;
+  background-color: white;
+  border: 1px solid #00a8cc;
+  border-radius: 6px;
+}
+
+.white-blue-btn:hover{
+  background-color: #00a8cc;
+  color: white;
+}
+
+.blue-white-btn{
+  font-family: 'roboto-bold';
+  font-size: 16px;
+  color: white;
+  background-color: #00a8cc;
+  border: none;
+  border-radius: 6px;
+}
+
+/* To acheive the underline with a gap between the line and the text we need to use the mix of padding-bottom and border-bottom instead of text-decoration */
+.line { 
+  padding-bottom: 2px; 
+  border-bottom: 2px solid #8696a3;
+  width: fit-content; 
+}
+
+.sel-dr-btn{
+  color: white;
+  background-color: #00a8cc;
+  border: none;
+  padding: 3% 3%;
+  width: 90%;
+}
+
+.sel-dr-btn span{
+  font-family: 'roboto-bold';
+  font-size: 16px;
+}
+
+.selected-btn{
+  background-color: #f36f21;
+}
+
+.orange-btn{
+  color: white;
+  background-color: #f36f21;
+  border: none;
+  box-shadow: 0 5px 10px 0 #f8ba96;
+  border-radius: 5px;
+  padding : 3%;
+  width :100%;
+}
+
+.orange-btn :hover,
+.orange-btn:focus{
+  background-color: #00a8cc;
+}
+
+.dr-spl-qa-disp{
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+.dr-appt-btn button,
+.dr-spl-qa-disp mat-panel-title{
+  font-family: 'Roboto-Bold';
+  font-size: 18px;
+}
+
+.dr-spl-qa-disp mat-panel-title{
+ color: #00a8cc;
+}
+
+.dr-spl-qa-disp hr{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dr-spl-qa-disp ul{
+  margin-left: 2%;
+}
+
+mat-error{
+  font-size: 12px;
+}
+
+/* DR-DISPLAY-FOR Book Appointment SPECIALITY PAGES CSS ENDS */
+
+h3,.privacyTerms h3{
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.caps{
+  text-transform: uppercase;
+}
+
+.faq-div{
+  padding-left: 2%;
+  margin-top: 2%;
+}
+
+.self-head{
+  color : #f36f21;
+  font-size: 36px;
+  font-family: 'Roboto-Regular';
+  text-align: left;
+}
+
+/* Dashboard side section-active grey color */
+.hover-btn{
+    color:white;
+    position: relative;
+    background-color: #354c5c;
+}
+
+/* Arrow mark to point out the selection(note- Give relative in parent and absolute in after for the postion) */
+.hover-btn::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 13px solid transparent;
+    border-left-color: #354c5c;
+    border-right: 0;
+    margin-top: -13px;
+    margin-right: -13px;
+  }
+/* 
+  label{
+    text-align: left;
+    font-family: 'Roboto-Bold';
+    font-size: 16px;
+    margin-bottom: 2%;
+    color : #354c5c;
+  } */
+
+  input:active {
+    outline: none;
+    border: none;
+    }
+
+    input:focus
+    {outline:0;}
+
+    input,mat-select
+    {
+      color :#8a8a8a;
+      border-radius: 5px;
+      padding : 4% 3%;
+      border: 2px solid #d9e5f5;
+    }
+
+    /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+    /* TODO(mdc-migration): The following rule targets internal classes of checkbox that may no longer apply for the MDC version. */
+    mat-checkbox{
+      color : #d9e5f5;
+    }
+
+.doct-display hr{
+  border-color: #f8b483;
+  margin-top: .75rem;
+  margin-bottom: .75rem;
+}
+
+.doct-display{
+  text-align: center;
+}
+
+.welcome-button .doct-display{
+  padding-top: 5%;
+}
+
+/* FAQ -Specialty pages */
+
+.faq-spl-title{
+  font-size: 20px;
+}
+
+#faq-special{
+  text-align: left;
+  margin-bottom: 4%;
+}
+
+#faq-special mat-panel-title{
+  line-height: 24px;
+}
+
+#faq-special .new-title{
+  margin-top: 0;
+	margin-bottom: 0;
+	display: list-item;
+	list-style-type: disc;
+	list-style-position: inside;
+}
+
+#faq-special .new-title::marker {
+  font-size: 30px;
+  color: #03a5cc;
+}
+
+#faq-special .new-panel-title{
+  display: inline;
+  width: 100%;
+  top: -5px;
+  position: relative;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Roboto-Black;";
+  text-decoration: none;
+  color: #000;
+  opacity: 1;
+}
+
+#faq-special mat-expansion-panel{
+  border-top: 2px solid #eef5ff;
+  padding : 2% 0%;
+}
+
+/* FAQ New Design css */
+
+#faqSection {
+  text-align: left;
+}
+
+#faqSection mat-panel-title{
+  line-height: 24px;
+  display: inline;
+  width: 100%;
+  top: -5px;
+  position: relative;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Roboto-Black;";
+  text-decoration: none;
+  color: #000;
+  opacity: 1;
+}
+
+#faqSection mat-expansion-panel{
+  border-top: 2px solid #eef5ff;
+  padding : 2% 0%;
+}
+
+#faqSection mat-expansion-panel:first-of-type{
+  border-top: 0px;
+}
+
+#faqSection mat-panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  display: list-item;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+#faqSection mat-panel-title::marker {
+  font-size: 30px;
+  color: #03a5cc;
+}
+#faqSection .mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow:none;
+}
+
+/* Search options */
+
+.search-section{
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  padding: 2%;
+}
+
+.search-title{
+  font-size: 18px;
+  font-family: 'Roboto-Regular';
+}
+
+.banner-heading,.home-page-title {
+  color : #354c5c;
+}
+
+.banner-img-info {
+  position: relative;
+  text-align : left;
+}
+
+.common-test{
+  background-color: white;
+  margin: 3% 0%;
+}
+
+.navlist li.img_tick
+{
+    list-style-image: url("/assets/images/package/tick.png");
+}
+.navlist li.img_wrong
+{
+    list-style-image: url("/assets/images/package/wrong.png");
+}
+
+.navlist li.img_one
+{
+    list-style-image: url("/assets/images/package/one.png");
+}
+.navlist li.img_two
+{
+    list-style-image: url("/assets/images/package/two.png");
+}
+.navlist li.img_three
+{
+    list-style-image: url("/assets/images/package/three.png");
+}
+.navlist li.img_four
+{
+    list-style-image: url("/assets/images/package/four.png");
+}
+.navlist li.img_six
+{
+    list-style-image: url("/assets/images/package/six.png");
+}
+
+.eld-card-text{
+  text-align: left;
+}
+
+.vd-call-instr{
+  text-align: left;
+  font-style: italic;
+}
+
+.vd-call-instr ol{
+  padding: 2%;
+}
+@media only screen and (max-width: 768px) {
+  #dashboard{margin-top: 8%;}
+  .side-section,
+  .faq-side{
+    margin-left: 1%;
+  }
+
+  .search-title{
+    font-size: 14px;
+    line-height: 12px;
+  }
+
+  #faqSection mat-panel-title{
+    font-size: 15px;  
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .side-section{
+    display: none;
+  }
+  #book-an-appt{
+    margin-top: 10%;
+  }
+  .desktop-view{
+    display : none ;
+  }
+  .mobile-view{
+    display: block;
+  }
+  .docGenie-container{
+    padding: 0% 2%;
+  }
+  .spl-disp{
+    margin: 6%;
+  }
+  .page-title{
+    font-size: 20px;
+  }
+    
+  #spec-dr-display .dr-img{
+    width: 50%;
+  }
+
+  .dr-display {
+    margin:6%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  }
+
+  #spec-dr-display .dr-display,#spec-dr-display .step2-btn{
+    text-align: center;
+  }
+
+  #spec-dr-display{
+    margin-top: 6%;
+  }
+
+  #spec-dr-display .step2-btn{
+    margin-top: 2%;
+  }
+
+  #spec-dr-display .dr-cr:after {
+    content: "\a";
+    white-space: pre; 
+    border: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  #spec-dr-display .dr-name{
+    margin-top: 2%;
+  }
+
+  #spec-dr-display .dr-spl-qa-disp p,h2,h3,h4{
+    margin : 3% 0%;
+  }
+
+  #faq-special .new-panel-title{
+    font-size: 16px;
+  }
+
+  #doctor-profile .dr-disp,.fees-disp{
+    text-align: center;
+  }
+} 
+
+/*Button color across the website*/
+.neo-mybutton{
+  background-color:#f36f21;
+  color:white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.neo-mybutton:disabled {
+  background: #ccc;
+  color:grey;
+  pointer-events: none;
+}
+
+.neo-mybutton:hover
+{
+  background-color: #00a8cc;
+  color:white;
+  text-decoration: none;
+ }

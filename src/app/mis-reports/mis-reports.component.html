@@ -1,0 +1,503 @@
+<section id="book-an-appt" class="docGenie-bkgrd">
+    <div class="docGenie-container">
+      <div class="row">
+  
+        <div class="col col-lg-3 col-md-4 side-section"> 
+              <div class="white-box nav-dash-joined">
+                <div class="row pat-button" (click)="onCityCount()">
+                  <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                    <span class="side-text">Citywise Count</span>
+                  </div>
+                </div><hr>
+                      
+                  <div class="row pat-button" (click)="onHealthcare()">
+                    <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                      <span class="side-text">Healthcare Plan Count</span>
+                    </div>
+                  </div>   <hr>
+                  <div class="row pat-button" (click)="onProbldia()">
+                    <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                    <span class="side-text">Probldia</span>
+                  </div>
+                </div><hr>
+                  <div class="row pat-button" (click)="onlabtestCount()">
+                    <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                      <span class="side-text"> Labtest Count</span>
+                    </div>
+                  </div><hr>
+                  <div class="row pat-button" (click)="onlabtestname()">
+                    <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                      <span class="side-text">Test Wise Booking</span>
+                    </div>
+                  </div><hr>
+                  <div class="row pat-button" (click)="onlabcity()">
+                    <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                      <span class="side-text">Patient Citywise</span>
+                    </div>
+                  </div><hr>
+                  <div class="row pat-button" (click)="ondoccount()">
+                    <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                      <span class="side-text">Doctor Wise count</span>
+                    </div>
+                  </div><hr> 
+                  <div class="row pat-button" (click)="onspclcount()">
+                    <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                      <span class="side-text">Speciality wise count</span>
+                    </div>
+                  </div><hr> 
+                  <div class="row pat-button" (click)="onPatCityCount()">
+                    <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                      <span class="side-text">Patient citywise count</span>
+                    </div>
+                  </div>
+              </div>
+               
+      
+      </div> 
+  
+        <div *ngIf="iscitywiseCount" class="col col-lg-9 col-md-7 main-section">
+            <section id="book-an-appt" class="docGenie-bkgrd">
+                <div class="docGenie-container mt-4 mb-3">
+                  <div class="page-title mb-2">Top 10 Cities with no of Patients !</div>
+                  <div class="white-top-orange-box mt-5" style="padding: 4%;">
+                    <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+                      <div class="col col-12 col-lg-12">
+                            <mat-table  [dataSource]="MyDataSource" matSort >
+                            <!-- Age Definition -->
+                            <ng-container matColumnDef="city">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
+                              <mat-cell *matCellDef="let detail"> {{detail.patdet_city}} </mat-cell>
+                            </ng-container>
+                
+                            <ng-container matColumnDef="count">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header> Count </mat-header-cell>
+                              <mat-cell *matCellDef="let detail"> {{detail.count_city}} </mat-cell>
+                            </ng-container>
+                
+                            <!-- Header and Row Declarations without actions-->
+                            <mat-header-row *matHeaderRowDef="['city','count']; sticky: true"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: ['city','count']"></mat-row>
+                            </mat-table>
+                          </div>
+                        </div>
+                  </div>                
+                </div>        
+                </section>     <br>         
+        </div>
+
+       
+      <div *ngIf="ishealthcareCount" class="col col-lg-9 col-md-7 main-section">
+        <section id="book-an-appt" class="docGenie-bkgrd">
+            <div class="docGenie-container mt-4 mb-3">
+              <div class="page-title mb-2">Healthcare Plan</div>
+              <div class="white-top-orange-box mt-5" style="padding: 4%;">
+                <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+                  <div class="col col-12 col-lg-12">
+                        <mat-table  [dataSource]="MyDataSource" matSort >
+                        <!-- Age Definition -->
+                        <ng-container matColumnDef="Pat_fname">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Patdet_fname </mat-header-cell>
+                          <mat-cell *matCellDef="let detail"> {{detail.patdet_fname}} </mat-cell>
+                        </ng-container>
+            
+                        <ng-container matColumnDef="Pat_lname">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Patdet_lname </mat-header-cell>
+                          <mat-cell *matCellDef="let detail"> {{detail.patdet_lname}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Pack_Name">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Pack_Name </mat-header-cell>
+                          <mat-cell *matCellDef="let detail"> {{detail.pack_name}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Packbook_tms">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Packbook_tms </mat-header-cell>
+                          <mat-cell *matCellDef="let detail"> {{detail.packbook_tms}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="packbook_status">
+                          <mat-header-cell *matHeaderCellDef mat-sort-header> Packbook_Status </mat-header-cell>
+                          <mat-cell *matCellDef="let detail"> {{detail.packbook_status}} </mat-cell>
+                        </ng-container>
+            
+                        <!-- Header and Row Declarations without actions-->
+                        <mat-header-row *matHeaderRowDef="['Pat_fname','Pat_lname','Pack_Name','Packbook_tms','packbook_status']; sticky: true"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: ['Pat_fname','Pat_lname','Pack_Name','Packbook_tms','packbook_status']"></mat-row>
+                        </mat-table>
+                      </div>
+                    </div>
+              </div>
+            
+            </div>        
+            </section>
+    </div>
+
+    <div *ngIf="isprobldio" class="col col-lg-9 col-md-7 main-section">
+      <section id="book-an-appt" class="docGenie-bkgrd">
+          <div class="docGenie-container mt-4 mb-3">
+            <div class="page-title mb-2">Probldio</div>
+            <div class="white-top-orange-box mt-5" style="padding: 4%;">
+              <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+                <div class="col col-12 col-lg-12">
+                      <mat-table  [dataSource]="MyDataSource" matSort >
+                      <!-- Age Definition -->
+                                
+                      <ng-container matColumnDef="Patnot_Probldia">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Patnot_Probldia </mat-header-cell>
+                        <mat-cell *matCellDef="let detail"> {{detail.patnot_probldia}} </mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="Probldia">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Probldia </mat-header-cell>
+                        <mat-cell *matCellDef="let detail"> {{detail.probldia}} </mat-cell>
+                      </ng-container>
+           
+                      <!-- Header and Row Declarations without actions-->
+                      <mat-header-row *matHeaderRowDef="['Patnot_Probldia','Probldia']; sticky: true"></mat-header-row>
+                      <mat-row *matRowDef="let row; columns: ['Patnot_Probldia','Probldia']"></mat-row>
+                      </mat-table>
+                    </div>
+                  </div>
+            </div>
+          
+          </div>        
+          </section>
+  </div>
+
+  <div *ngIf="islabtestCount" class="col col-lg-9 col-md-7 main-section">
+    <section id="book-an-appt" class="docGenie-bkgrd">
+        <div class="docGenie-container mt-4 mb-3">
+          <div class="page-title mb-2">No of Lab tests booked and value!</div>
+          <div class="white-top-orange-box mt-5" style="padding: 4%;">
+            <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+              <div class="col col-12 col-lg-12">
+                    <mat-table  [dataSource]="MyDataSource" matSort >
+                    <!-- Age Definition -->
+                    <ng-container matColumnDef="count">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> count </mat-header-cell>
+                      <mat-cell *matCellDef="let detail"> {{detail.count}} </mat-cell>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="amount">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> amount </mat-header-cell>
+                      <mat-cell *matCellDef="let detail"> {{detail.amount}} </mat-cell>
+                    </ng-container>
+        
+                    <!-- Header and Row Declarations without actions-->
+                    <mat-header-row *matHeaderRowDef="['count','amount']; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: ['count','amount']"></mat-row>
+                    </mat-table>
+                  </div>
+                </div>
+          </div>
+        
+        </div>        
+        </section>
+</div>
+
+<div *ngIf="islabtestname" class="col col-lg-9 col-md-7 main-section">
+  <section id="book-an-appt" class="docGenie-bkgrd">
+      <div class="docGenie-container mt-4 mb-3">
+        <div class="page-title mb-2">Lab Test Wise Booking!</div>
+        <div class="white-top-orange-box mt-5" style="padding: 4%;">
+          <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+            <div class="col col-12 col-lg-12">
+                  <mat-table  [dataSource]="MyDataSource" matSort >
+                  <!-- Age Definition -->
+                  <ng-container matColumnDef="labtestid">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> labtestid </mat-header-cell>
+                    <mat-cell *matCellDef="let detail"> {{detail.labtest_labtestid}} </mat-cell>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="testname">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> testname </mat-header-cell>
+                    <mat-cell *matCellDef="let detail"> {{detail.lbtst_name}} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="count">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> count </mat-header-cell>
+                    <mat-cell *matCellDef="let detail"> {{detail.count}} </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="amount">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>amount </mat-header-cell>
+                    <mat-cell *matCellDef="let detail"> {{detail.amount}} </mat-cell>
+                  </ng-container>
+                  <!-- Header and Row Declarations without actions-->
+                  <mat-header-row *matHeaderRowDef="['labtestid','testname','count','amount']; sticky: true"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: ['labtestid','testname','count','amount']"></mat-row>
+                  </mat-table>
+                </div>
+              </div>
+        </div>
+      
+      </div>        
+      </section>
+</div>
+<div *ngIf="islabtestcity" class="col col-lg-9 col-md-7 main-section">
+<section id="book-an-appt" class="docGenie-bkgrd">
+    <div class="docGenie-container mt-4 mb-3">
+      <div class="page-title mb-2">Patient citywise no of bookings and value!</div>
+      <div class="white-top-orange-box mt-5" style="padding: 4%;">
+        <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+          <div class="col col-12 col-lg-12">
+                <mat-table  [dataSource]="MyDataSource" matSort >
+                <!-- Age Definition -->
+                <ng-container matColumnDef="test_city">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> test_city </mat-header-cell>
+                  <mat-cell *matCellDef="let detail"> {{detail.test_city}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="test_status">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> test_status </mat-header-cell>
+                  <mat-cell *matCellDef="let detail"> {{detail.test_status}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="amount">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> amount </mat-header-cell>
+                  <mat-cell *matCellDef="let detail"> {{detail.amount}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="no_of_booking">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>no_of_booking </mat-header-cell>
+                  <mat-cell *matCellDef="let detail"> {{detail.no_of_booking}} </mat-cell>
+                </ng-container>
+                <!-- Header and Row Declarations without actions-->
+                <mat-header-row *matHeaderRowDef="['test_city','test_status','amount','no_of_booking']; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['test_city','test_status','amount','no_of_booking']"></mat-row>
+                </mat-table>
+              </div>
+            </div>
+      </div>
+    
+    </div>        
+    </section>
+</div>
+
+<div *ngIf="isdoccount" class="col col-lg-9 col-md-7 main-section">
+  <section id="book-an-appt" class="docGenie-bkgrd">
+    <form [formGroup]="displayAppdate" autocomplete="off" novalidate > 
+      <div class="row mt-4 justify-content-center">
+        <div class="col-12 col-lg-4 col-md-4">
+          <mat-card-title class="text-color">Start date : </mat-card-title>
+          <mat-form-field [style.fontSize.px]=12  appearance="outline">
+            <input matInput [matDatepicker]="picker2" [formControl]="startDatePicker" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-lg-4 col-md-4">
+          <mat-card-title class="ml-4 text-color">End date : </mat-card-title>
+          <mat-form-field [style.fontSize.px]=12  appearance="outline">
+            <input matInput [matDatepicker]="picker3" [formControl]="endDatePicker" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-12 col-lg-2 col-md-2"> 
+          <p><span class="count">Count : </span>{{count}} </p>
+        </div> 
+      </div>
+    </form>
+<!--     <div class="row mt-4 justify-content-center">
+      <div class="col-12 col-lg-4 col-md-4">
+        <mat-card-title class="text-color">Start date : </mat-card-title>
+        <mat-form-field [style.fontSize.px]=12 appearance="outline">
+          <input matInput type="date" id="startdate" (input)="addEvent('input', $event)" (change)="addEvent('change', $event)" >
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-lg-4 col-md-4">
+        <mat-card-title class="ml-4 text-color">End date : </mat-card-title>
+        <mat-form-field [style.fontSize.px]=12 appearance="outline">
+          <input matInput type="date" id="enddate" (input)="addEvent('input', $event)" (change)="addEvent('change', $event)" >
+        </mat-form-field>
+      </div> 
+      <div class="col-12 col-lg-2 col-md-2"> 
+        <p><span class="docGenie-grey">Count : </span>{{count}} </p>
+      </div>  
+    </div> -->
+      <div class="docGenie-container mt-4 mb-3">
+        <div class="page-title mb-2">Doctor Wise no of consults and total</div>
+        <div class="white-top-orange-box mt-5" style="padding: 4%;">
+          <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+            <div class="col col-12 col-lg-12">
+                  <mat-table  [dataSource]="MyDataSource" matSort >
+                  <!-- Age Definition -->
+                  <ng-container matColumnDef="Doctor">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Doctor </mat-header-cell>
+                    <mat-cell *matCellDef="let detail"> {{detail.dr_name}} </mat-cell>
+                  </ng-container>
+      
+                  <ng-container matColumnDef="No of calls">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> No of calls </mat-header-cell>
+                    <mat-cell *matCellDef="let detail"> {{detail.total_calls}} </mat-cell>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Values">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Values </mat-header-cell>
+                    <mat-cell *matCellDef="let detail"> {{detail.amount}} </mat-cell>
+                  </ng-container>
+      
+                  <!-- Header and Row Declarations without actions-->
+                  <mat-header-row *matHeaderRowDef="['Doctor','No of calls','Values']; sticky: true"></mat-header-row>
+                  <mat-row *matRowDef="let row; columns: ['Doctor','No of calls','Values']"></mat-row>
+                  </mat-table>
+                </div>
+              </div>
+        </div>
+      
+      </div>        
+      </section>
+</div>
+
+<div *ngIf="isspclcount" class="col col-lg-9 col-md-7 main-section">
+<section id="book-an-appt" class="docGenie-bkgrd">
+  <form [formGroup]="displayAppdate" autocomplete="off" novalidate > 
+    <div class="row mt-4 justify-content-center">
+      <div class="col-12 col-lg-4 col-md-4">
+        <mat-card-title class="text-color">Start date : </mat-card-title>
+        <mat-form-field [style.fontSize.px]=12  appearance="outline">
+          <input matInput [matDatepicker]="picker2" [formControl]="startDatePicker" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-lg-4 col-md-4">
+        <mat-card-title class="ml-4 text-color">End date : </mat-card-title>
+        <mat-form-field [style.fontSize.px]=12  appearance="outline">
+          <input matInput [matDatepicker]="picker3" [formControl]="endDatePicker" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-lg-2 col-md-2"> 
+        <p><span class="count">Count : </span>{{count}} </p>
+      </div> 
+    </div>
+  </form>
+  <!-- <div class="row mt-4 justify-content-center">
+    <div class="col-12 col-lg-4 col-md-4">
+      <mat-card-title class="text-color">Start date : </mat-card-title>
+      <mat-form-field [style.fontSize.px]=12 appearance="outline">
+        <input matInput type="date" id="startdate" (input)="addEvent('input', $event)" (change)="addEvent('change', $event)" >
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-lg-4 col-md-4">
+      <mat-card-title class="ml-4 text-color">End date : </mat-card-title>
+      <mat-form-field [style.fontSize.px]=12 appearance="outline">
+        <input matInput type="date" id="enddate" (input)="addEvent('input', $event)" (change)="addEvent('change', $event)" >
+      </mat-form-field>
+    </div> 
+    <div class="col-12 col-lg-2 col-md-2"> 
+      <p><span class="docGenie-grey">Count : </span>{{count}}</p>
+    </div>  
+  </div> -->
+    <div class="docGenie-container mt-4 mb-3">
+      <div class="page-title mb-2">Speciality wise no of consults and total</div>
+      <div class="white-top-orange-box mt-5" style="padding: 4%;">
+        <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+          <div class="col col-12 col-lg-12">
+                <mat-table  [dataSource]="MyDataSource" matSort >
+                <!-- Age Definition -->
+                <ng-container matColumnDef="Speciality">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Speciality </mat-header-cell>
+                  <mat-cell *matCellDef="let detail"> {{detail.docdet_special}} </mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="No of calls">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> No of calls </mat-header-cell>
+                  <mat-cell *matCellDef="let detail"> {{detail.no_of_booking}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Values">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Values </mat-header-cell>
+                  <mat-cell *matCellDef="let detail"> {{detail.amount}} </mat-cell>
+                </ng-container>
+    
+                <!-- Header and Row Declarations without actions-->
+                <mat-header-row *matHeaderRowDef="['Speciality','No of calls','Values']; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['Speciality','No of calls','Values']"></mat-row>
+                </mat-table>
+              </div>
+            </div>
+      </div>
+    
+    </div>        
+    </section>
+</div>
+
+<div *ngIf="isPatCityCount" class="col col-lg-9 col-md-7 main-section">
+<section id="book-an-appt" class="docGenie-bkgrd">
+  <form [formGroup]="displayAppdate" autocomplete="off" novalidate > 
+    <div class="row mt-4 justify-content-center">
+      <div class="col-12 col-lg-4 col-md-4">
+        <mat-card-title class="text-color">Start date : </mat-card-title>
+        <mat-form-field [style.fontSize.px]=12  appearance="outline">
+          <input matInput [matDatepicker]="picker2" [formControl]="startDatePicker" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-lg-4 col-md-4">
+        <mat-card-title class="ml-4 text-color">End date : </mat-card-title>
+        <mat-form-field [style.fontSize.px]=12  appearance="outline">
+          <input matInput [matDatepicker]="picker3" [formControl]="endDatePicker" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-12 col-lg-2 col-md-2"> 
+        <p><span class="count">Count : </span>{{count}} </p>
+      </div> 
+    </div>
+  </form>
+<!-- <div class="row mt-4 justify-content-center">
+  <div class="col-12 col-lg-4 col-md-4">
+    <mat-card-title class="text-color">Start date : </mat-card-title>
+    <mat-form-field [style.fontSize.px]=12 appearance="outline">
+      <input matInput type="date" id="startdate" (input)="addEvent('input', $event)" (change)="addEvent('change', $event)" >
+    </mat-form-field>
+  </div>
+  <div class="col-12 col-lg-4 col-md-4">
+    <mat-card-title class="ml-4 text-color">End date : </mat-card-title>
+    <mat-form-field [style.fontSize.px]=12 appearance="outline">
+      <input matInput type="date" id="enddate" (input)="addEvent('input', $event)" (change)="addEvent('change', $event)" >
+    </mat-form-field>
+  </div> 
+  <div class="col-12 col-lg-2 col-md-2"> 
+    <p><span class="docGenie-grey">Count : </span>{{count}}</p>
+  </div>  
+</div> -->
+  <div class="docGenie-container mt-4 mb-3">
+    <div class="page-title mb-2">Patient citywise no of bookings and value</div>
+    <div class="white-top-orange-box mt-5" style="padding: 4%;">
+      <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+        <div class="col col-12 col-lg-12">
+              <mat-table  [dataSource]="MyDataSource" matSort >
+              <!-- Age Definition -->
+              <ng-container matColumnDef="Patientcity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Patientcity </mat-header-cell>
+                <mat-cell *matCellDef="let detail"> {{detail.patdet_city}} </mat-cell>
+              </ng-container>
+  
+              <ng-container matColumnDef="No of calls">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> No of calls </mat-header-cell>
+                <mat-cell *matCellDef="let detail"> {{detail.no_of_booking}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Values">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Values </mat-header-cell>
+                <mat-cell *matCellDef="let detail"> {{detail.amount}} </mat-cell>
+              </ng-container>
+  
+              <!-- Header and Row Declarations without actions-->
+              <mat-header-row *matHeaderRowDef="['Patientcity','No of calls','Values']; sticky: true"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: ['Patientcity','No of calls','Values']"></mat-row>
+              </mat-table>
+            </div>
+          </div>
+    </div>
+  
+  </div>        
+  </section>
+</div>
+
+      </div>
+    </div>
+  </section>

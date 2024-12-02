@@ -1,0 +1,40 @@
+#dashboard{
+    font-family: 'Roboto-Regular';
+    font-size: 16px;
+    padding-top: 3%;
+    text-align: left;
+    padding-bottom: 10%;
+  }
+.home-page-title,.pat-name{
+    text-align: center;
+}
+.neo-link{    text-decoration: underline;    color: #f36f21;    cursor:pointer;  }
+ngx-select-dropdown
+{
+  border-radius: 5px;
+  padding: 4%;
+}
+.blue-white-btn {padding: 1% 2%;}
+table
+{
+  border-collapse: collapse;
+  width: 100%;
+}
+.mat-cell{line-height: 70px;}
+.td-bold,.pay-btn{
+  font-family: 'Roboto-Bold';
+}
+td > span :first-child{
+  padding-left: 10%;
+  padding-right: 5%;
+}
+td.mat-cell{
+    padding: 5px;
+    border-bottom-color: rgba(0,0,0,.12); text-align: center;}
+    th.mat-header-cell{
+      padding-top: 20px;
+      text-align: center;
+    }
+    mat-grid-tile {
+      background: white;   
+    }

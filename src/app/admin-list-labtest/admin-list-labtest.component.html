@@ -1,0 +1,124 @@
+<section id="book-an-appt" class="docGenie-bkgrd">
+    <div class="docGenie-container mt-2 mb-3">
+      <div *ngIf="ShowUpCancel" class="justify-content-center white-top-orange-box mt-2 mb-3" style="padding: 4%;">
+          <div class="page-title">Cancelling Lab Order !</div>
+          <label>Patient Name : {{showupdetail.test_fname}}
+          &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact / Email - ID : {{showupdetail.patdet_contact}} {{showupdetail.test_lname}} </label><br><br>
+          <div class="row justify-content-center">
+              <div class="col col-7 col-lg-7">
+                <mat-form-field [style.fontSize.px]=14 class="match_parent">
+                  <input matInput type="text" [(ngModel)]="cancellationExplanation" placeholder="Reason for Cancellation">
+                </mat-form-field>       
+              </div>
+            <div class="col col-2 col-lg-2">  
+              <button class="neo-mybutton match_parent mt-3" (click)="cancelOderAPI(showupdetail.testFileID)">Update</button>
+            </div>  
+          </div> 
+      </div>
+      <circle-progress class="neo-progress" *ngIf="showSpinner"
+      [percent]="100"
+      [radius]="40"
+      [outerStrokeWidth]="6"
+      [innerStrokeWidth]="4"
+      [outerStrokeColor]="'#00a8cc'"
+      [innerStrokeColor]="'#f36f21'"
+      [animation]="true"
+      [animationDuration]="10000"
+    ></circle-progress>
+    <div class="page-title mb-2">Upcoming Labtests !</div>
+    <div class="white-top-orange-box mt-5" style="padding: 4%;">
+      <div class="docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+       <!--  <div class="col col-12 col-lg-12"> -->
+          <form [formGroup]="displayAppdate" autocomplete="off" novalidate > 
+            <div class="row mt-4 justify-content-center">
+              <div class="col-12 col-lg-4 col-md-4">
+                <mat-card-title class="text-color">Start date : </mat-card-title>
+                <mat-form-field [style.fontSize.px]=12  appearance="outline">
+                  <input matInput [matDatepicker]="picker2" [formControl]="startDatePicker" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-12 col-lg-4 col-md-4">
+                <mat-card-title class="ml-4 text-color">End date : </mat-card-title>
+                <mat-form-field [style.fontSize.px]=12  appearance="outline">
+                  <input matInput [matDatepicker]="picker3" [formControl]="endDatePicker" (dateInput)="addEvent('input', $event)" (dateChange)="addEvent('change', $event)">
+                  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                  <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-12 col-lg-2 col-md-2"> 
+                <p><span class="count">Count : </span>{{count}} </p>
+              </div> 
+            </div>
+          </form>
+          <!-- <div class="row">
+            <div class="col-12 col-lg-4 col-md-6">
+              <mat-card-title class="text-color">Start date : </mat-card-title>
+              <mat-form-field [style.fontSize.px]=12 appearance="outline">
+                <input matInput type="date" id="startdate" (input)="addEvent('input', $event)" (change)="addEvent('change', $event)" >
+              </mat-form-field>
+            </div>
+            
+            <div class="col-12 col-lg-4 col-md-6">
+              <mat-card-title class="ml-4 text-color">End date : </mat-card-title>
+              <mat-form-field [style.fontSize.px]=12 appearance="outline">
+                <input matInput type="date" id="enddate" (input)="addEvent('input', $event)" (change)="addEvent('change', $event)" >
+              </mat-form-field>
+            </div>
+  
+            <div class="col-12 col-lg-4 col-md-6"> 
+              <p><span class="count">Count : </span>{{count}} <span class="ml-4"> Total Amount :</span> {{totAmt}} </p>
+            </div>
+          </div> -->
+          <table mat-table [dataSource]="MyDataSource">
+    
+          <!-- Age Definition -->
+          <ng-container matColumnDef="fname">
+            <mat-header-cell *matHeaderCellDef > Name </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.test_fname}} <br>{{detail.test_lname}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="labtest">
+            <mat-header-cell *matHeaderCellDef>  Lab test  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > <span class="test-name">{{detail.lbtst_name}} </span></mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="amount">
+            <mat-header-cell *matHeaderCellDef> Amount / Promo Used </mat-header-cell>
+            <mat-cell *matCellDef="let detail"> {{detail.lbtst_amount}} <br> ({{detail.promo_code}}) </mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="collectdate">
+            <mat-header-cell *matHeaderCellDef> Collection / Booked Date </mat-header-cell>
+            <mat-cell *matCellDef="let detail"> {{detail.test_collectiondate}} {{detail.test_collectiontime}} <br> {{detail.paydet_date}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+            <mat-cell *matCellDef="let detail"> <a *ngIf="detail.paydet_date >='2024-10-19' && detail.labtest_owner=='Orange-Health'" (click)="onStatus(detail.testFileID)" class="neo-link"> Status</a> <span *ngIf="detail.paydet_date <'2024-10-19'">Report Sent</span></mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="actions">
+            <mat-header-cell  *matHeaderCellDef> Actions </mat-header-cell>
+            <mat-cell *matCellDef="let detail" >
+              <input type="file" id="file" name="image" #filepicker multiple (change)="selectMultipleImage($event,detail.patid,detail.testFileID)"  style="display:none;">
+              <button type="button" class="orange-btn" (click)="filepicker.click()">Upload Report</button>
+              <!-- <span *ngIf="getReport(detail.test_report)" class="count">Report Uploaded</span> -->
+            </mat-cell>
+          </ng-container>
+    
+          <ng-container matColumnDef="cancel">
+            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+            <mat-cell *matCellDef="let detail"> <button *ngIf="detail.paydet_date >='2024-10-24' && detail.labtest_owner=='Orange-Health'" type="button" class="orange-btn" (click)="cancelOrder(detail)">Cancel</button></mat-cell>
+          </ng-container>
+
+          <!-- Header and Row Declarations without actions-->
+          <mat-header-row *matHeaderRowDef="['fname','labtest','amount','collectdate','status','actions','cancel']; sticky: true"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['fname','labtest','amount','collectdate','status','actions','cancel']"></mat-row>
+          </table>
+       <!--  </div> -->
+    </div>
+      </div>
+    </div>
+   </section> 

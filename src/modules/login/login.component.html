@@ -1,0 +1,74 @@
+<div>
+    <circle-progress class="neo-progress" *ngIf="showSpinner"
+    [percent]="100"
+    [radius]="40"
+    [outerStrokeWidth]="6"
+    [innerStrokeWidth]="4"
+    [outerStrokeColor]="'#00a8cc'"
+    [innerStrokeColor]="'#f36f21'"
+    [animation]="true"
+    [animationDuration]="10000"
+  ></circle-progress>
+    <section id="login-section" class="docGenie-bkgrd">
+        <div class="home-page-title">Log In/Sign Up</div>
+        <div class="page-title mt-3">How it Works</div>
+        <img src="/assets/images/new-UI/how-it-works-login-page.webp" class="img-fluid">
+        <div class="login-page">
+          <div class="login-section">
+            <p>You are signing up to use the services of some of the best doctors and
+              lab test facilities by registering with <b>DocGenie</b></p>
+            <div class="form-section docGenie-bkgrd">
+              <form [formGroup]="ownerForm" autocomplete="off" novalidate >
+                <div class="row">
+                  <div class="col col-8 col-lg-9 col-md-9 col-sm-8">
+                    <mat-form-field class="match_parent" [style.fontSize.px]=14>
+                        <label>Mobile</label>
+                        <input matInput type="text" placeholder="Enter 10 digit phone no" formControlName="username" id="username">
+                        <mat-error *ngIf="hasError('username', 'required')">Phone number is required</mat-error>
+                        <mat-error *ngIf="hasError('username','pattern')">Invalid Phone number</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col col-4 col-lg-3 col-md-3 col-sm-4 left">
+                    <button class="otp-button" mat-raised-button [disabled]="isotpbtndisabled" (click)="generateOTP(ownerForm.value)"> {{btnText}} </button>
+                    <p class="neoTimer docGenie-orange" *ngIf="isotpbtndisabled">Resend OTP in 0:{{timeLeft}}s</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col col-8 col-lg-9 col-md-9 col-sm-8">
+                    <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+                      <label>Verify</label>
+                      <input matInput type="password" placeholder="Enter OTP" formControlName="password" id="password">
+                      <mat-error *ngIf="hasError('password', 'required')">OTP is required</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col col-4 col-lg-3 col-md-3 col-sm-4 left">
+                    <button class="neo-mybutton verify-button" mat-raised-button [disabled]="!ownerForm.valid" (click)="LoginUser(ownerForm.value)">Verify</button>
+                  </div>
+                </div>
+                <p class="left docGenie-orange">**If you are already registered with us, please login with the same mobile number so that the earlier patient records can be retrieved by the doctor.</p>
+              </form>
+            </div>
+          </div>
+          <div class="instr">
+            <p><b>Kindly note the following important points :</b></p>
+            <ol>
+              <li>Please enter only your 10 digit India mobile no and not the country code.</li>
+              <li><span class="docGenie-blue">Incase, you are booking with an overseas mobile no, or facing issues receiving OTP, you could book very easily through WhatsApp. Just <a href="https://api.whatsapp.com/send?phone=919599011287&text=Hi+there" target="_blank" class="docGenie-orange">click here</a>  and follow the menu</span>.</li>
+              <li>Once you enter the mobile no., please remember to click on "Get OTP" and then wait to receive your OTP. Sometimes, because of your mobile network connection, the delivery of the OTP could be delayed. Give it time for your OTP to arrive. Logging in from a good network connection area will definitely help.</li>
+              <li>Once you receive the OTP, please enter the same in the box provided and click on "Verify". Once your OTP is verified, you will reach your dashboard or if you are login in for the first time, you will be asked to complete a quick registration.</li>
+              <li>The OTP is generated as soon as you click "Get OTP" and is valid for 30 minutes. </li>
+              <li>For any issues, please call us on our call centre numbers or send us a whatsapp message.</li>
+            </ol>
+          </div>
+  
+  
+        </div>
+  
+    </section>
+  
+  
+  </div>
+  
+  
+  
+  

@@ -1,0 +1,712 @@
+<section id="dashboard" class="docGenie-bkgrd">
+    <div class="docGenie-container">
+      <div class="row" *ngIf="!isAdmin">
+        <div class="col col-lg-3 col-md-4 side-section">
+          <div class="white-box nav-dash-joined">
+            <div class="row welcome-button">
+              <div class="col col-lg-12 col-md-12 doct-display">
+                <span class="side-text">Welcome,<br><span class="pat-name" style="padding-top: 2%;"> Dr. {{docDispName}} </span><br><hr><span class="neo-id">DocGenie ID : {{docDispID}}</span><hr></span>
+              </div>
+            </div>
+            <div class="row pat-button" (click)="onSideClick('/updatedoctor')">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/pat-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-md-10 col-sm-10 col-10 info-display">
+                <span class="side-text">View Profile</span>
+              </div>
+            </div><hr>
+  
+            <div class="row reg-button" (click)="onSideClick('/doctor-calendar')">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/doctor-page/cald-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-md-10 col-sm-10 col-10 reg-display">
+                <span class="side-text">Update Calendar</span>
+              </div>
+            </div><hr>
+  
+            <div class="row reg-button hover-btn">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/docs-hover-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-md-10 col-sm-10 col-10 reg-display">
+                <span class="side-text">Financial Statements</span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="nav-dash-seperate">
+            <div class="row white-box dash-button" (click)="onSideClick('/home')">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                <span class="side-text">Dashboard</span>
+              </div>
+            </div>
+            <div class="row white-box past-button" (click)="onSideClick('/doctor-appointments')" >
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/past-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                <span class="side-text">Your Past Appointments</span>
+              </div>
+            </div>
+            <div class="row white-box lab-button" (click)="onSideClick('/docpatlist')">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/doctor-page/drsPat-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10">
+                <span class="side-text">Your Patients</span>
+              </div>
+            </div>
+            <div class="row white-box msg-button" (click)="onSideClick('/askChatGPT')">
+              <div class="col col-lg-2 col-md-2 col-sm-2 col-2">
+                <img src="/assets/images/new-UI/msg-dashboard-side.png" class="side-icon">
+              </div>
+              <div class="col col-lg-10 col-lg-10 col-md-10 col-sm-10 col-10">
+                <span class="side-text">Ask ChatGPT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-lg-9 col-md-7 main-section">
+          <div class="white-top-orange-box">
+            <button mat-icon-button class="close-button" (click)="divClose()"> 
+              <span>Close</span> <mat-icon class="close-icon">close</mat-icon>
+            </button>
+            <div class="home-page-title mt-5">Financial Statements</div>
+              <div class="step-3"> 
+                <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px;">
+                  <div class="col col-12 col-md-12 col-lg-12">              
+                    <section id="update-section" class="docGenie-bkgrd" >
+                      <div class="register-page">
+                        <div class="register-info mb-5">
+                          <div class="row mt-5 mb-5">
+                            <div class="col col-12">
+                              <ul class="nav nav-tabs nav-justified"><!-- neo-orange-bottom -->
+                                <li class="nav-item">
+                                  <div class="nav-link blue-bkg" *ngIf="!layout_monthly" (click)="onTabClick(2)">Monthly List of Consults</div>
+                                  <div class="nav-link white-bkg" *ngIf="layout_monthly" (click)="onTabClick(2)">Monthly List of Consults</div>
+                                </li>
+                                <li class="nav-item">
+                                  <div class="nav-link blue-bkg" *ngIf="!layout_summary" (click)="onTabClick(3)">Summary of Payments</div>
+                                  <div class="nav-link white-bkg" *ngIf="layout_summary" (click)="onTabClick(3)">Summary of Payments</div>
+                                </li>
+                              </ul>
+                      
+                              <!-- Consult Details -->
+                              <div *ngIf="layout_consult" >
+                                <div class="tab-pane tab-info">
+                                  <div><span style="float: right ;font-weight:bold ;">Count : {{count}} </span></div><br><br>
+                                  <div class="row justify-content-center" style="border-radius: 10px; padding: 2%;">
+                                    <div class="col col-12 col-lg-12">
+                                      <mat-table [dataSource]="MyDataConsults">
+                                    
+                                        <ng-container matColumnDef="slno">
+                                          <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail let i = index" > {{count-i}}</mat-cell>
+                                        </ng-container>
+                                    
+                                        <ng-container matColumnDef="name">
+                                          <mat-header-cell *matHeaderCellDef>Patient Name </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> 
+                                            <p *ngIf="idDrSelected"> {{doctordetail.patdet_name}} </p>
+                                          </mat-cell>
+                                        </ng-container>
+                                    
+                                        <ng-container matColumnDef="date">
+                                          <mat-header-cell *matHeaderCellDef> Consulted Date </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> {{doctordetail.caldet_date}} <br> {{doctordetail.caldet_calltype}}</mat-cell>
+                                        </ng-container>
+                                    
+                                        <!-- Title Definition -->
+                                        <ng-container matColumnDef="callType">
+                                          <mat-header-cell *matHeaderCellDef> Paid / Follow-Up </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> <span class="{{getCallType(doctordetail.call_status)}}"> {{callTypeDisp}}</span> </mat-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="promoUsed">
+                                          <mat-header-cell *matHeaderCellDef> Promo Used </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> {{doctordetail.caldet_promocode}} </mat-cell>
+                                        </ng-container>
+                                    
+                                        <!-- Header and Row Declarations without actions-->
+                                        <mat-header-row *matHeaderRowDef="['slno','name', 'date', 'callType', 'promoUsed' ]; sticky: true"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: ['slno','name', 'date', 'callType','promoUsed']"></mat-row>
+                                      </mat-table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div> 
+                      
+                              <!-- Monthly Details -->
+                              <div *ngIf="layout_monthly" >
+                                <div class="tab-pane tab-info">
+                                  <form [formGroup]="monthfrmgrp" autocomplete="off" > 
+                                  <div class="row mt-3"> 
+                                      <div class="col col-6 col-md-4 col-lg-4">
+                                        <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                          <mat-select placeholder="Select Month" formControlName="month" id="month">
+                                            <mat-option *ngFor="let month of monthlist" [value]="month.name">
+                                              {{month.name}}
+                                            </mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div> 
+                                      <div class="col col-3 col-md-4 col-lg-4">
+                                        <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                          <mat-select placeholder="Select Year" formControlName="year" id="year">
+                                            <mat-option *ngFor="let year of yearlist" [value]="year.name">
+                                              {{year.name}}
+                                            </mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div> 
+                                      <div class="col col-3 col-md-4 col-lg-4">  
+                                        <button class="neo-mybutton match_parent mt-4" (click)="search()">Search</button>
+                                      </div>
+                                  </div>
+                                </form> 
+                                <p><span style="float: right ;font-weight:bold ;">Count : {{count}} </span></p><br><br>
+                                  <div class="row justify-content-center" style="border-radius: 10px; padding: 2%;">
+                                    <div class="col col-12 col-lg-12">
+                                      <mat-table [dataSource]="MyMonthlyConsults">
+                                    
+                                        <ng-container matColumnDef="slno">
+                                          <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail let i = index" > {{count-i}}</mat-cell>
+                                        </ng-container>
+                              
+                                        <ng-container matColumnDef="name">
+                                          <mat-header-cell *matHeaderCellDef>Patient Name </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail">
+                                            <p *ngIf="idDrSelected"> {{doctordetail.patdet_name}} </p>
+                                            <p *ngIf="!idDrSelected">{{doctordetail.patdet_name}} <br> {{doctordetail.docdet_name}} </p></mat-cell>
+                                        </ng-container>
+                              
+                                        <ng-container matColumnDef="date">
+                                          <mat-header-cell *matHeaderCellDef> Consulted Date </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> {{doctordetail.caldet_date}} <br> {{doctordetail.caldet_calltype}}</mat-cell>
+                                        </ng-container>
+                              
+                                        <!-- Title Definition -->
+                                        <ng-container matColumnDef="callType">
+                                          <mat-header-cell *matHeaderCellDef> Paid / Follow-Up </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> <span class="{{getCallType(doctordetail.call_status)}}"> {{callTypeDisp}}</span> </mat-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="promo">
+                                          <mat-header-cell *matHeaderCellDef> Promocode Used </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail">  {{doctordetail.caldet_promocode}} </mat-cell>
+                                        </ng-container>
+                              
+                                        <!-- Header and Row Declarations without actions-->
+                                        <mat-header-row *matHeaderRowDef="['slno','name', 'date', 'callType', 'promo' ]; sticky: true"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: ['slno','name', 'date', 'callType','promo']"></mat-row>
+                                      </mat-table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                      
+                              <!-- Summary-->
+                              <div *ngIf="layout_summary" >
+                                <div class="tab-pane tab-info">
+  
+                                  <!-- ledger update form -->
+                                  <div class="home-page-title mb-3">Payment Summary Details</div>
+                                  <p><span style="float: right ;font-weight:bold ;">Count : {{count}} </span></p><br><br>
+                                  <div class="row justify-content-center" style="border-radius: 10px; padding: 2%;">
+                                    <div class="col col-12 col-lg-12">
+                                      <mat-table  [dataSource]="MyLedgerSummary" >
+  
+                                        <ng-container matColumnDef="month">
+                                          <mat-header-cell *matHeaderCellDef>Month </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.Summary_peroid}} </mat-cell>
+                                        </ng-container>
+                                  
+                                        <ng-container matColumnDef="paidTrans">
+                                          <mat-header-cell *matHeaderCellDef> No of Paid Transactions </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.NoOfTransactions}} </mat-cell>
+                                        </ng-container>
+                                  
+                                        <ng-container matColumnDef="follTrans">
+                                          <mat-header-cell *matHeaderCellDef> No of Follow-Ups </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.NoOfFollows}} </mat-cell>
+                                        </ng-container>
+                                  
+                                        <ng-container matColumnDef="grossValue">
+                                          <mat-header-cell *matHeaderCellDef> Gross Value</mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.Grossamt_upd}}</mat-cell>
+                                        </ng-container>
+    
+                                        <ng-container matColumnDef="comm">
+                                          <mat-header-cell *matHeaderCellDef> Commission</mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.Commission_upd}}</mat-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="tds">
+                                          <mat-header-cell *matHeaderCellDef> TDS </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.TDS_upd}} </mat-cell>
+                                        </ng-container>
+    
+                                        <ng-container matColumnDef="NetValue">
+                                          <mat-header-cell *matHeaderCellDef> Net Value in INR </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.Netvalue_upd}} </mat-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="paiddt1">
+                                          <mat-header-cell *matHeaderCellDef> First Payment Amount / Date</mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.Payment_Amount_1}}  <br>   {{ledgerdetail.PaymentDate_1}}     </mat-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="paiddt2">
+                                          <mat-header-cell *matHeaderCellDef> 2nd Payment Amount / Date </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.Payment_Amount_2}} <br> {{ledgerdetail.PaymentDate_2}}  </mat-cell>
+                                        </ng-container>  
+                                        
+                                        <mat-header-row *matHeaderRowDef="['month','paidTrans', 'follTrans', 'grossValue', 'comm','tds','NetValue','paiddt1','paiddt2' ]; sticky: true"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: ['month','paidTrans', 'follTrans', 'grossValue', 'comm','tds','NetValue','paiddt1','paiddt2' ]"></mat-row>
+                                      </mat-table>                                       
+                                            
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                                
+                                  
+                            </div>
+                          </div>
+                        </div>
+                       </div>    
+                    </section>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="row mt-5 mb-5" *ngIf="isAdmin">    
+        <div class="col col-lg-12 col-md-12 main-section">
+          <div class="white-top-orange-box">
+            <div class="home-page-title mt-5">Financial Statements</div>
+              <div class="step-3"> 
+                <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px;">
+                  <div class="col col-12 col-md-8 col-lg-8">
+                      <ngx-select-dropdown class="dropdown match_parent" tabindex="0" (change)="onDoctorSelection($event)"  
+                        [multiple]="false" [config]="configDoc" [options]="doclist" ></ngx-select-dropdown>
+                    <!-- <form [formGroup]="registerfrmgrp" autocomplete="off" novalidate > 
+                      <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                        <label>Select Doctor</label>
+                        <mat-select placeholder="Select Doctor" formControlName="doctor" id="doctor" (selectionChange)="onDoctorSelection(selectedDoc)" [(ngModel)]="selectedDoc">
+                        <mat-option *ngFor="let doccat of doclist" [value]="doccat.name" >{{doccat.name}}({{doccat.spl}})</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </form>   -->
+                    <p class="pat-Name"><b>Doctor Selected  :</b> {{selectedDoc}} </p><br>
+                  </div> 
+                  <div class="col col-12 col-md-12 col-lg-12">              
+                    <section id="update-section" class="docGenie-bkgrd" >
+                      <div class="register-page">
+                        <div class="register-info mb-5">
+                          <div class="row mb-5">
+                            <div class="col col-12">
+                              <ul class="nav nav-tabs nav-justified"><!-- neo-orange-bottom -->
+                                <li class="nav-item" data-toggle="tab">
+                                  <div class="nav-link blue-bkg" *ngIf="!layout_consult" (click)="onTabClick(1)">List of Consults</div>
+                                  <div class="nav-link white-bkg" *ngIf="layout_consult" (click)="onTabClick(1)">List of Consults</div>
+                                </li>
+                                <li class="nav-item">
+                                  <div class="nav-link blue-bkg" *ngIf="!layout_monthly" (click)="onTabClick(2)">Monthly Statements</div>
+                                  <div class="nav-link white-bkg" *ngIf="layout_monthly" (click)="onTabClick(2)">Monthly Statements</div>
+                                </li>
+                                <li class="nav-item">
+                                  <div class="nav-link blue-bkg" *ngIf="!layout_summary" (click)="onTabClick(3)">Summary of Payments</div>
+                                  <div class="nav-link white-bkg" *ngIf="layout_summary" (click)="onTabClick(3)">Summary of Payments</div>
+                                </li>
+                              </ul>
+                      
+                              <!-- Consult Details -->
+                              <div *ngIf="layout_consult" >
+                                <div class="tab-pane tab-info">
+                                  <div><span style="float: right ;font-weight:bold ;">Count : {{count}} </span></div><br><br>
+                                  <div class="row justify-content-center" style="border-radius: 10px; padding: 2%;">
+                                    <div class="col col-12 col-lg-12">
+                                      <mat-table [dataSource]="MyDataConsults">
+                                    
+                                        <ng-container matColumnDef="slno">
+                                          <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail let i = index" > {{count-i}}</mat-cell>
+                                        </ng-container>
+                                    
+                                        <ng-container matColumnDef="name">
+                                          <mat-header-cell *matHeaderCellDef>Patient Name </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> 
+                                            <p *ngIf="idDrSelected"> {{doctordetail.patdet_name}} </p>
+                                            <p *ngIf="!idDrSelected">{{doctordetail.patdet_name}} <br> {{doctordetail.docdet_name}} </p></mat-cell>
+                                        </ng-container>
+                                    
+                                        <ng-container matColumnDef="date">
+                                          <mat-header-cell *matHeaderCellDef> Consulted Date </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> {{doctordetail.caldet_date}} </mat-cell>
+                                        </ng-container>
+                                    
+                                        <!-- Title Definition -->
+                                        <ng-container matColumnDef="callType">
+                                          <mat-header-cell *matHeaderCellDef> Paid / Follow-Up </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> <span class="{{getCallType(doctordetail.call_status)}}"> {{callTypeDisp}}</span> </mat-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="promoUsed">
+                                          <mat-header-cell *matHeaderCellDef> Promo Used </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> {{doctordetail.caldet_promocode}} </mat-cell>
+                                        </ng-container>
+                                    
+                                        <ng-container matColumnDef="paidAmt">
+                                          <mat-header-cell *matHeaderCellDef> Paid Amount </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> {{doctordetail.paidAMt}} </mat-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="bookdtms">
+                                          <mat-header-cell *matHeaderCellDef> Booked Date </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> {{doctordetail.caldet_tms}}  </mat-cell>
+                                        </ng-container>
+                                    
+                                        <!-- Header and Row Declarations without actions-->
+                                        <mat-header-row *matHeaderRowDef="['slno','name', 'date', 'callType', 'promoUsed','paidAmt','bookdtms' ]; sticky: true"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: ['slno','name', 'date', 'callType','promoUsed', 'paidAmt','bookdtms']"></mat-row>
+                                      </mat-table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div> 
+                      
+                              <!-- Monthly Details -->
+                              <div *ngIf="layout_monthly" >
+                                <div class="tab-pane tab-info">
+                                  <form [formGroup]="monthfrmgrp" autocomplete="off" > 
+                                  <div class="row mt-3"> 
+                                      <div class="col col-6 col-md-4 col-lg-4">
+                                        <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                          <mat-select placeholder="Select Month" formControlName="month" id="month">
+                                            <mat-option *ngFor="let month of monthlist" [value]="month.name">
+                                              {{month.name}}
+                                            </mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div> 
+                                      <div class="col col-3 col-md-4 col-lg-4">
+                                        <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                          <mat-select placeholder="Select Year" formControlName="year" id="year">
+                                            <mat-option *ngFor="let year of yearlist" [value]="year.name">
+                                              {{year.name}}
+                                            </mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div> 
+                                      <div class="col col-3 col-md-4 col-lg-4">  
+                                        <button class="neo-mybutton match_parent mt-3" (click)="search()">Search</button>
+                                      </div>
+                                  </div>
+                                </form> 
+                                <p><span style="float: right ;font-weight:bold ;">Count : {{count}} </span></p><br><br>
+                                <!--   <h3 class="textLeft docGenie-blue mb-3"><b>Past Appointments & Prescriptions</b></h3> -->
+                                  <div class="row justify-content-center" style="border-radius: 10px; padding: 2%;">
+                                    <div class="col col-12 col-lg-12">
+                                      <mat-table [dataSource]="MyMonthlyConsults">
+                                    
+                                        <ng-container matColumnDef="slno">
+                                          <mat-header-cell *matHeaderCellDef> S.No </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail let i = index" > {{count-i}}</mat-cell>
+                                        </ng-container>
+                              
+                                        <ng-container matColumnDef="name">
+                                          <mat-header-cell *matHeaderCellDef>Patient Name </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail">
+                                            <p *ngIf="idDrSelected"> {{doctordetail.patdet_name}} </p>
+                                            <p *ngIf="!idDrSelected">{{doctordetail.patdet_name}} <br> {{doctordetail.docdet_name}} </p></mat-cell>
+                                        </ng-container>
+                              
+                                        <ng-container matColumnDef="date">
+                                          <mat-header-cell *matHeaderCellDef> Consulted Date </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> {{doctordetail.caldet_date}}</mat-cell>
+                                        </ng-container>
+                              
+                                        <!-- Title Definition -->
+                                        <ng-container matColumnDef="callType">
+                                          <mat-header-cell *matHeaderCellDef> Paid / Follow-Up </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> <span class="{{getCallType(doctordetail.call_status)}}"> {{callTypeDisp}}</span> </mat-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="promo">
+                                          <mat-header-cell *matHeaderCellDef> Promocode Used </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail">  {{doctordetail.caldet_promocode}} </mat-cell>
+                                        </ng-container>
+                              
+                                        <ng-container matColumnDef="paidAmt">
+                                          <mat-header-cell *matHeaderCellDef> Paid Amount </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> {{doctordetail.paidAMt}}  </mat-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="bookdtms">
+                                          <mat-header-cell *matHeaderCellDef> Booked Date </mat-header-cell>
+                                          <mat-cell *matCellDef="let doctordetail"> {{doctordetail.caldet_tms}}  </mat-cell>
+                                        </ng-container>
+                              
+                                        <!-- Header and Row Declarations without actions-->
+                                        <mat-header-row *matHeaderRowDef="['slno','name', 'date', 'callType', 'promo','paidAmt','bookdtms' ]; sticky: true"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: ['slno','name', 'date', 'callType','promo', 'paidAmt','bookdtms']"></mat-row>
+                                      </mat-table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                      
+                              <!-- Summary-->
+                              <div *ngIf="layout_summary" >
+                                <div class="tab-pane tab-info">
+  
+                                  <!-- ledger update form -->
+                                  <div class="home-page-title mb-3">Payment Summary Details</div>
+                                  <section id="register-section mt-5" class="docGenie-bkgrd p-4" *ngIf="updPayVisible" >
+                                    <label style="font-size: 16px;"><b>Doctor :</b> {{showupdetail.docdet_name}} &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Month :</b> {{showupdetail.Summary_peroid}}&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> No of Paid Trans : </b>{{showupdetail.NoOfTransactions}} &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<b> No of Follow-Ups : </b>{{showupdetail.NoOfFollows}}&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;<b> Gross Value : </b>{{showupdetail.GrossValueinINR}}
+                                  </label><br>
+                                    <div class="register-page">
+                                      <div class="regForm-section">
+                                        <form [formGroup]="paymentfrmgrp" autocomplete="off" novalidate (ngSubmit)="createSummary(paymentfrmgrp.value)">
+                                  
+                                        <!-- First Row (Gross Value, Commission) -->
+                                        <div class="row mt-3">                               
+                                          <!-- Gross Value -->
+                                          <div class="col col-6 col-md-3 col-lg-3">
+                                            <mat-form-field class="match_parent" [style.fontSize.px]=14   >
+                                              <label>Gross Value Updated</label>
+                                              <input matInput #box type="text" placeholder="Gross Value Updated" formControlName="Grossamt_upd" id="Grossamt_upd" (keyup)="onEnter(box.value)">
+                                            </mat-form-field>
+                                          </div>                           
+                                          <!-- Commision -->
+                                          <div class="col col-6 col-md-3 col-lg-3">
+                                            <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                              <label>Commission</label>
+                                              <input matInput type="text" placeholder="Commission" formControlName="Commission" id="Commission">
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col col-6 col-md-3 col-lg-3">
+                                            <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                              <label>TDS</label>
+                                              <input matInput type="text" placeholder="TDS" formControlName="TDS" id="TDS">
+                                            </mat-form-field>
+                                          </div> 
+                                          <div class="col col-6 col-md-3 col-lg-3">
+                                            <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                              <label>Net Value </label>
+                                              <input matInput type="text" placeholder="Net Value" formControlName="NetValueinINR" id="NetValueinINR" style="color:#f36f21">
+                                            </mat-form-field>
+                                          </div> 
+                                        </div>                               
+                                        <!-- Second Row (TDS, Net Value) -->
+                                        <div class="row">
+                                          <!-- TDS -->
+                                          <!-- Net Value -->
+                                         
+                                          <div class="col col-6 col-md-3 col-lg-3">
+                                            <label class="label-text">Paid Date - 1</label>
+                                            <mat-form-field [style.fontSize.px]=12   >
+                                              <input matInput [matDatepicker]="picker1" [formControl]="PayDate_1" (dateInput)="add1Event('input', $event)" (dateChange)="add1Event('change', $event)">
+                                              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle><br>
+                                              <mat-datepicker #picker1></mat-datepicker>
+                                            </mat-form-field>
+                                          </div> 
+                                          <div class="col col-6 col-md-3 col-lg-3">
+                                            <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                              <label>Paid Amount - 1</label>
+                                              <input matInput type="text" placeholder="Paid Amount - 1" formControlName="Payment_Amount_1" id="Payment_Amount_1">
+                                            </mat-form-field>
+                                          </div>
+                                          <div class="col col-6 col-md-3 col-lg-3">
+                                            <label class="label-text">Paid Date - 2</label>
+                                            <mat-form-field [style.fontSize.px]=12   >
+                                              <input matInput [matDatepicker]="picker2" [formControl]="PayDate_2" (dateInput)="add2Event('input', $event)" (dateChange)="add2Event('change', $event)">
+                                              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle><br>
+                                              <mat-datepicker #picker2></mat-datepicker>
+                                            </mat-form-field>
+                                          </div> 
+                                          <div class="col col-6 col-md-3 col-lg-3">
+                                            <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                              <label>Paid Amount - 2</label>
+                                              <input matInput type="text" placeholder="Paid Amount - 2" formControlName="Payment_Amount_2" id="Payment_Amount_2">
+                                            </mat-form-field>
+                                          </div>                                                     
+                                        </div>
+                                        <!-- Third Row (Pay Amount , Pay Date) -->
+                                        <div class="row">
+                                          <div class="col col-6 col-md-3 col-lg-3">
+                                            <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                              <label>Notes Regd Payment(If any)</label>
+                                              <input matInput type="text" placeholder="Notes Regd Payment(If any)" formControlName="Transactiondetail" id="Transactiondetail">
+                                            </mat-form-field>
+                                          </div>
+                                                                                                   
+                                        </div>
+                                  
+                                        <div class="col neo-flex mt-3">
+                                          <mat-checkbox formControlName="consent" id="consent" [(ngModel)]="withConsent"> </mat-checkbox>  <p class="form-text" style="padding-left : 1% ;">Doctor can View the statements</p>
+                                        </div>
+  
+                                        <!-- Register Button -->
+                                        <div class="row justify-content-center mt-3 mb-3">
+                                          <div class="col col-6">
+                                            <mat-card-actions >
+                                              <button class="match_parent neo-mybutton">Update Summary</button>
+                                            </mat-card-actions>
+                                          </div>
+                                        </div>
+                                  
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </section>
+                                  <form [formGroup]="monthfrmgrp" autocomplete="off" > 
+                                    <div class="row mt-3"> 
+                                      <div class="col col-6 col-md-4 col-lg-4">
+                                        <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                          <mat-select placeholder="Select Month" formControlName="month" id="month">
+                                            <mat-option *ngFor="let month of monthlist" [value]="month.name">
+                                              {{month.name}}
+                                            </mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div> 
+                                      <div class="col col-3 col-md-4 col-lg-4">
+                                        <mat-form-field class="match_parent" [style.fontSize.px]=14  >
+                                          <mat-select placeholder="Select Year" formControlName="year" id="year">
+                                            <mat-option *ngFor="let year of yearlist" [value]="year.name">
+                                              {{year.name}}
+                                            </mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div> 
+                                      <div class="col col-3 col-md-4 col-lg-4">  
+                                        <button class="neo-mybutton match_parent mt-3" (click)="searchLedger()">Search</button>
+                                      </div>
+                                    </div>
+                                  </form> 
+                                  <p><span style="float: right ;font-weight:bold ;">Count : {{count}} </span></p><br><br>
+                                  <div class="row justify-content-center" style="border-radius: 10px; padding: 2%;">
+                                    <div class="col col-12 col-lg-12">
+                                      <mat-table  [dataSource]="MyLedgerSummary" >
+                                
+                                        <ng-container matColumnDef="drName">
+                                          <mat-header-cell *matHeaderCellDef>Doctor Name </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.docdet_name}}</mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> <b>Total</b></mat-footer-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="month">
+                                          <mat-header-cell *matHeaderCellDef>Month </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.Summary_peroid}} </mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                                        </ng-container>
+                                  
+                                        <ng-container matColumnDef="paidTrans">
+                                          <mat-header-cell *matHeaderCellDef> No of Paid Transactions </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.NoOfTransactions}} </mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> {{totalPaidTrans}}</mat-footer-cell>
+                                        </ng-container>
+                                  
+                                        <ng-container matColumnDef="follTrans">
+                                          <mat-header-cell *matHeaderCellDef> No of Follow-Ups </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.NoOfFollows}} </mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> {{totalFollups}}</mat-footer-cell>
+                                        </ng-container>
+                                  
+                                        <ng-container matColumnDef="grossValue">
+                                          <mat-header-cell *matHeaderCellDef> Gross Value</mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.GrossValueinINR}}</mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> {{totalGross}}</mat-footer-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="gv-upd">
+                                          <mat-header-cell *matHeaderCellDef> Gross Value - Updated </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.Grossamt_upd}}</mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                                        </ng-container>
+    
+                                 <!--        <ng-container matColumnDef="comm">
+                                          <mat-header-cell *matHeaderCellDef> Commission</mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.Commission_upd}}</mat-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="tds">
+                                          <mat-header-cell *matHeaderCellDef> TDS </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.TDS_upd}} </mat-cell>
+                                        </ng-container> -->
+    
+                                        <ng-container matColumnDef="NetValue">
+                                          <mat-header-cell *matHeaderCellDef> Net Value in INR </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail"> {{ledgerdetail.Netvalue_upd}} </mat-cell>
+                                          <mat-footer-cell *matFooterCellDef>{{totalNet}} </mat-footer-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="paiddt1">
+                                          <mat-header-cell *matHeaderCellDef> 1st Payment Date </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail">    {{ledgerdetail.PaymentDate_1}}         </mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="paidamt1">
+                                          <mat-header-cell *matHeaderCellDef> 1st Payment Amount </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail">   {{ledgerdetail.Payment_Amount_1}}   </mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                                        </ng-container>
+  
+                                       <!--  <ng-container matColumnDef="paiddt2">
+                                          <mat-header-cell *matHeaderCellDef> 2nd Payment Date </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail">  {{ledgerdetail.PaymentDate_2}}  </mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                                        </ng-container>
+  
+                                        <ng-container matColumnDef="paidamt2">
+                                          <mat-header-cell *matHeaderCellDef> 2nd Payment Amount </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail">  {{ledgerdetail.Payment_Amount_2}}</mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                                        </ng-container> -->
+  
+                                        <ng-container matColumnDef="notes">
+                                          <mat-header-cell *matHeaderCellDef> Notes </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail">  {{ledgerdetail.Transactiondetail}} </mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                                        </ng-container> 
+  
+                                        <ng-container matColumnDef="process">
+                                          <mat-header-cell *matHeaderCellDef> Process </mat-header-cell>
+                                          <mat-cell *matCellDef="let ledgerdetail">  <button class="neo-mybutton" (click)="updatePay(ledgerdetail)">Update</button></mat-cell>
+                                          <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
+                                        </ng-container>
+                                              
+                                        <mat-header-row *matHeaderRowDef="['drName','month','paidTrans', 'follTrans', 'grossValue','gv-upd', 'NetValue','paiddt1','paidamt1','notes','process' ]; sticky: true"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: ['drName','month','paidTrans', 'follTrans', 'grossValue', 'gv-upd','NetValue','paiddt1','paidamt1','notes','process']"></mat-row>
+                                        <mat-footer-row class="sticky-footer" *matFooterRowDef="['drName','month','paidTrans', 'follTrans', 'grossValue', 'gv-upd','NetValue','paiddt1','paidamt1','notes','process']"></mat-footer-row>
+                                      </mat-table>                                       
+                                            
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                                
+                                  
+                            </div>
+                          </div>
+                        </div>
+                       </div>    
+                    </section>  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+   </section>       

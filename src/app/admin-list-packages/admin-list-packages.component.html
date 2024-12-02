@@ -1,0 +1,82 @@
+<section id="book-an-appt" class="docGenie-bkgrd">
+    <div class="docGenie-container"> 
+      <circle-progress class="neo-progress" *ngIf="showSpinner"
+      [percent]="100"
+      [radius]="40"
+      [outerStrokeWidth]="6"
+      [innerStrokeWidth]="4"
+      [outerStrokeColor]="'#00a8cc'"
+      [innerStrokeColor]="'#f36f21'"
+      [animation]="true"
+      [animationDuration]="10000"
+    ></circle-progress>
+  
+    <div class="page-title mt-2 mb-2">Booked Packages</div>
+    
+    <form [formGroup]="packfrmgrp" autocomplete="off" novalidate >
+      <div class="row justify-content-center mt-3">
+      <div class="col col-4 col-lg-4">
+      <mat-form-field class="match_parent" [style.fontSize.px]=14 >
+        <label>Search by Package Name : </label>
+        <input matInput type="text" placeholder="Search Package" formControlName="srchstr" id="srchstr">
+        <mat-error *ngIf="hasError('srchstr', 'required')">Search string required</mat-error>
+      </mat-form-field></div>
+      <div class="col col-4 col-lg-2" style="margin-top: 3%;">
+      <button class="neo-mybutton" (click)="search()">Search</button></div></div>
+    </form>
+    
+    <div class="white-top-orange-box mt-5" style="padding: 4%;">
+      <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+        <div class="col col-12 col-lg-12">
+          <div class="row mb-4 mt-4">
+            <!-- <div class="col-12 col-lg-5 col-md-5">
+              <mat-card-title class="ml-4 text-color">Start date : </mat-card-title>
+              <mat-form-field [style.fontSize.px]=12 appearance="none">
+                <input matInput type="date" id="startdate" (input)="addEvent('input', $event)" (change)="addEvent('change', $event)" >
+              </mat-form-field>
+            </div>
+            <div class="col-12 col-lg-5 col-md-5">
+              <mat-card-title class="ml-4 text-color">End date : </mat-card-title>
+              <mat-form-field [style.fontSize.px]=12 appearance="none">
+                <input matInput type="date" id="enddate" (input)="addEvent('input', $event)" (change)="addEvent('change', $event)" >
+              </mat-form-field>
+            </div> --> 
+            
+            <div class="col-12 col-lg-2 col-md-2"> 
+              <mat-card-title class="ml-4 text-color">Count : {{count}}</mat-card-title>
+              <!-- <p><span>Count : </span>{{count}}  <span class="ml-4"> Total Amount :</span> {{totAmt}}  </p> -->
+            </div>  
+          </div>
+  
+          <mat-table [dataSource]="MyDataSource">
+    
+            <!-- Age Definition -->
+            <ng-container matColumnDef="date">
+              <mat-header-cell *matHeaderCellDef>  Date (Start date,End date)  </mat-header-cell><!--  [ngClass]="'w-200'" -->
+              <mat-cell *matCellDef="let detail" > {{detail.caldet_date}} <br> {{detail.packpaydate}}<br>({{detail.packstartdate}},{{detail.packenddate}})</mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="patients">
+              <mat-header-cell *matHeaderCellDef> Patients </mat-header-cell>
+              <mat-cell *matCellDef="let detail"> <p>{{detail.packfname}}  {{detail.packlname}}<br>{{detail.packphone}}</p></mat-cell>
+            </ng-container>
+      
+      
+            <ng-container matColumnDef="Package">
+              <mat-header-cell *matHeaderCellDef > Package name </mat-header-cell>
+              <mat-cell *matCellDef="let detail" > {{detail.packname}} </mat-cell>
+            </ng-container>
+      
+            <!-- Header and Row Declarations without actions-->
+            <mat-header-row *matHeaderRowDef="['date','patients','Package']; sticky: true"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: ['date','patients','Package']"></mat-row>
+      
+           
+            </mat-table>
+        </div>
+      </div>
+    </div>      
+  
+    </div>
+  </section>  
+    

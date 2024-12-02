@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+    <p>{{msg}}</p>
+  </div>
+  
+  <div *ngIf="isyesno" mat-dialog-actions class="neo-center">
+    <button class="neo-mybutton mr-2" (click)="onNoClick()">No</button>
+    <button class="neo-mybutton" [mat-dialog-close]="true" cdkFocusInitial>Yes</button>
+  </div>
+  
+  
+  <div *ngIf="isok" mat-dialog-actions class="neo-center">
+    <button class="neo-mybutton" [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+  </div>
+  

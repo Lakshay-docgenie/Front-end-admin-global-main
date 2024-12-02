@@ -1,0 +1,70 @@
+<section id="book-an-appt" class="docGenie-bkgrd">
+    <div class="docGenie-container mt-4 mb-3">
+      <form [formGroup]="registerfrmgrp" autocomplete="off" novalidate >
+        <mat-card-title class="text-color">Search Patient</mat-card-title>
+        <div class="row align-items-centre">
+          <div class="col col-8 col-lg-8">
+            <mat-form-field [style.fontSize.px]=14 class="match_parent" >
+              <input matInput type="text" placeholder="Please enter First Name / Last Name / Email / Phone No to search " formControlName="srchstr" id="srchstr" appearance="outline">
+              <mat-error *ngIf="hasError('srchstr', 'required')">Search string required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col col-3 col-lg-3">  
+            <button class="neo-mybutton match_parent mt-3" (click)="search()">Search</button>
+          </div>  
+        </div>  
+      </form>
+      
+      <div class="page-title mb-2">Patient informations !</div>
+      <a routerLink="/add-new-patient" style="float:left;" class="page-title docGenie-blue">Add New Patient</a><br><br><br>
+      <a routerLink="/patient-logs" style="float:right;" class="page-title docGenie-blue">Newly Registered Patients</a><br>
+      <div class="white-top-orange-box mt-5" style="padding: 4%;">
+        <!--<p> <span style="font-weight:bold ;">Count : </span>{{count}} --><p style="font-weight:bold;text-align: right;">Total Count : {{totalCount}}<!-- </span> --> </p>
+        <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+          <div class="col col-12 col-lg-12">
+              <mat-table  [dataSource]="MyDataSource" matSort >
+    
+                <ng-container matColumnDef="slno">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> S.No </mat-header-cell>
+                  <mat-cell *matCellDef="let doctordetail; let i = index" > {{count - i - (MyDataSource.paginator.pageIndex * MyDataSource.paginator.pageSize) }}. &nbsp;{{doctordetail.patdet_regtime}}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                  <mat-cell *matCellDef="let doctordetail"> {{doctordetail.patdet_fname}} {{doctordetail.patdet_lname}} </mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="email">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+                  <mat-cell *matCellDef="let doctordetail"> {{doctordetail.patdet_email}} </mat-cell>
+                </ng-container>
+    
+                <!-- Title Definition -->
+                <ng-container matColumnDef="contact">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Contact </mat-header-cell>
+                  <mat-cell *matCellDef="let doctordetail"> {{doctordetail.patdet_contact}} </mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="postaddress">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> City, State </mat-header-cell>
+                  <mat-cell *matCellDef="let doctordetail"> {{doctordetail.patdet_city}},{{doctordetail.patdet_state}} </mat-cell>
+                </ng-container>
+    
+                <!-- Header and Row Declarations without actions-->
+                <mat-header-row *matHeaderRowDef="['slno','name', 'email', 'contact', 'postaddress' ]; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['slno','name', 'email', 'contact', 'postaddress']"></mat-row>
+              </mat-table>
+              <mat-paginator 
+                [length]="5"
+                [pageSizeOptions]="[10, 15, 20]"
+                [showFirstLastButtons]="firstLastButtons"
+                (page)="onChangePage($event)">
+              </mat-paginator>
+              </div>
+            </div>
+      </div>
+    
+    </div>        
+    </section>
+    
+    

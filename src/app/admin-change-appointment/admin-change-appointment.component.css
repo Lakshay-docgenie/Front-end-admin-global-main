@@ -1,0 +1,31 @@
+label{
+    text-align: left;
+    font-family: 'Roboto-Bold';
+    font-size: 16px;
+    margin-bottom: 2%;
+    color : #354c5c;
+  }
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }  
+  .white-blue-btn{
+    padding: 1% 0;
+    border-width : 2px;
+  }
+  input
+  {
+    color :#8a8a8a;
+    border-radius: 5px;
+    border: 2px solid #354c5c !important;
+    padding: 2%;
+  }  
+  .no-Slots{
+    font-size: 16px;
+    color: #f36f21;
+    text-align: center;
+  }
+  .clinic-addr{
+    font-size: 16px;
+    font-weight: bold;
+  }

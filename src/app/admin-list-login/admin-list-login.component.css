@@ -1,0 +1,21 @@
+.count{
+    font-size: 14px;
+    font-family: 'Roboto-Bold';
+    color : #354c5c;
+  } 
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  } 
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white !important;
+  }
+  .w-75{
+    max-width: 75px;
+  }
+  input{
+    color :#8a8a8a;
+    border-radius: 5px;
+    padding : 2% 3%;
+    border: 2px solid #d9e5f5 !important;
+  }

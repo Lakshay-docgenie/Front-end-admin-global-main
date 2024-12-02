@@ -1,0 +1,11 @@
+.mat-mdc-dialog-content
+{
+  text-align: center;
+  color:#00a8cc;
+}
+.neo-center
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,309 @@
+<section id="book-an-appt" class="docGenie-bkgrd">
+    <div class="docGenie-container"> 
+      <div #TOP></div>
+      <div class="page-title">Promo code</div>
+      <div *ngIf="!isASR"><!-- *ngIf="!isASR" -->
+        <label id="example-radio-group-label">Pick your Promo type</label>
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          [(ngModel)]="selectedpromotype">
+          <mat-radio-button class="example-radio-button" *ngFor="let promotype of promotypes" [value]="promotype" (click)="onclickradio(promotype)" >
+            {{promotype}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <br>
+      <div class="white-top-orange-box mb-5" *ngIf="!isASR"><!-- *ngIf="isupdate" --> <!-- *ngIf="!isASR"  -->
+        <form [formGroup]="registerfrmgrp" autocomplete="off" novalidate >
+          <div class="row">
+            <div class="col-12 col-lg-4 col-md-6">
+              <mat-form-field [style.fontSize.px]=14 class="match_parent"   >
+                <label>Promo Code </label>
+                <input matInput type="text" placeholder="Promo Code" formControlName="promocode" id="promocode" >
+                <mat-error *ngIf="hasError('promocode', 'required')">Promo Code is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div *ngIf="!isitemselected" class="col-12 col-lg-4 col-md-6">
+             
+                <mat-form-field [style.fontSize.px]=12> <label>Start Date</label>
+                  <input matInput [matDatepicker]="picker2" [formControl]="startDatePicker" (dateInput)="addFromEvent('input', $event)" (dateChange)="addFromEvent('change', $event)">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+              <!-- <mat-form-field [style.fontSize.px]=14 class="match_parent"   >
+                <label>Start Date :</label>
+                <input matInput type="date" id="fromDate" (input)="addFromEvent('input', $event)" (change)="addFromEvent('change', $event)" >
+              </mat-form-field> -->
+            </div>  
+            <div *ngIf="isitemselected" class="col-12 col-lg-4 col-md-6">
+              <mat-form-field [style.fontSize.px]=14 class="match_parent">
+                <label>Start Date</label>
+                <input matInput type="text" placeholder="Start Date" formControlName="startdate" id="startdate" >
+                <mat-error *ngIf="hasError('startdate', 'required')">Start Date is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div *ngIf="!isitemselected" class="col-12 col-lg-4 col-md-6">
+              
+                <mat-form-field [style.fontSize.px]=12 ><label>End date</label>
+                  <input matInput [matDatepicker]="picker3" [formControl]="endDatePicker" (dateInput)="addToEvent('input', $event)" (dateChange)="addToEvent('change', $event)">
+                  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                  <mat-datepicker #picker3></mat-datepicker>
+                </mat-form-field>
+             <!--  <mat-form-field [style.fontSize.px]=14 class="match_parent"   >
+                <label>End Date :</label>
+                <input matInput type="date" id="toDate" (input)="addToEvent('input', $event)" (change)="addToEvent('change', $event)" >
+              </mat-form-field> -->
+            </div>  
+            <div *ngIf="isitemselected" class="col-12 col-lg-4 col-md-6">
+              <mat-form-field [style.fontSize.px]=14 class="match_parent"   >
+                <label>End date</label>
+                <input matInput type="text" placeholder="End Date" formControlName="enddate" id="enddate" >
+                <mat-error *ngIf="hasError('enddate', 'required')">End Date is required</mat-error>
+              </mat-form-field>
+            </div>  
+          </div>
+          
+          <div class="row">
+            <div class="col-12 col-lg-4 col-md-6">
+              <mat-form-field [style.fontSize.px]=14 class="match_parent"   >
+                <label>Description</label>
+                <input matInput type="text" placeholder="Description of the Promo" formControlName="description" id="description">
+                <mat-error *ngIf="hasError('description', 'required')">Description is required</mat-error>
+              </mat-form-field>
+            </div>  
+            <div class="col-12 col-lg-4 col-md-6">
+              <mat-form-field [style.fontSize.px]=14 class="match_parent"   >
+                <label>Promo Count</label>
+                <input matInput type="text" placeholder="Promo Count" formControlName="promocount" id="promocount">
+                <mat-error *ngIf="hasError('promocount', 'required')">Promo Count is required</mat-error>
+              </mat-form-field>
+            </div> 
+            <div class="col-12 col-lg-4 col-md-6">
+              <mat-form-field [style.fontSize.px]=14 class="match_parent"   >
+                <label>Dicount</label>
+                <input matInput type="text" placeholder="Discount (Either in % or just as Value)" formControlName="discount" id="discount">
+                <mat-error *ngIf="hasError('discount', 'required')">Discount is required</mat-error>
+              </mat-form-field>      
+            </div> 
+          </div>
+          <!--Doctor Categories form -->
+          <div *ngIf="(!isitemselected) && isdocitemselected" class="row">
+            <div class="col-12 col-lg-4 col-md-6">
+              <mat-form-field class="match_parent" [style.fontSize.px]=14   >
+                <label>Doctor Categories</label>
+                <mat-select placeholder="Select Doctor category" formControlName="doccat" id="doccat" (selectionChange)="onCatSelection(selectedCat)" [(ngModel)]="selectedCat">
+                  <mat-option *ngFor="let doccat of doccatlist" [value]="doccat.desc" >{{doccat.desc}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>  
+  
+            <div class="col-12 col-lg-4 col-md-6">
+              <mat-form-field class="match_parent" [style.fontSize.px]=14   >
+                <label>Doctor</label>
+                <mat-select placeholder="Select Doctor" formControlName="doctor" id="doctor" (selectionChange)="onDoctorSelection(selectedDoc)" [(ngModel)]="selectedDoc">
+                  <mat-option *ngFor="let doccat of doclist" [value]="doccat.name" >{{doccat.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+  
+            <div class="col col-12 col-md-6 col-lg-4">
+              <mat-form-field class="match_parent" [style.fontSize.px]=14   >
+                <label>Call Type</label>
+                <mat-select placeholder="Select Call Type" formControlName="callType" id="callType">
+                  <mat-option *ngFor="let callType of callTypelist" [value]="callType.name">
+                    {{callType.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div> 
+  
+          <!--Lab Categories form -->
+          <div *ngIf="(!isitemselected) && islabitemselected" class="row">
+            <div class="col-12 col-lg-6 col-md-6">
+              <mat-form-field class="match_parent" [style.fontSize.px]=14   >
+                <label>Lab Categories</label>
+                <mat-select placeholder="Select Lab category" formControlName="labcat" id="labcat" (selectionChange)="onlabCatSelection(selectedlabcat)" [(ngModel)]="selectedlabcat">
+                  <mat-option *ngFor="let doccat of labcatlist" [value]="doccat.cat" >{{doccat.cat}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>  
+  
+            <div class="col-12 col-lg-6 col-md-6">
+              <mat-form-field class="match_parent" [style.fontSize.px]=14   >
+                <label>Lab test</label>
+                <mat-select placeholder="Select Lab test" formControlName="labtest" id="labtest" (selectionChange)="onlabtestSelection(selectedlabtest)" [(ngModel)]="selectedlabtest">
+                  <mat-option *ngFor="let doccat of lablist" [value]="doccat.lbtstname" >{{doccat.lbtstname}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div> 
+          <!--Doctor Categories list value -->
+          <div *ngIf="isitemselected && isdocitemselected" class="row">
+            <div class="col-12 col-lg-4 col-md-6">
+              <mat-form-field [style.fontSize.px]=14 class="match_parent"   >
+                <label>Category/Doctor Selected : </label>
+                <input matInput type="text" placeholder="Category or Doctor Selected" formControlName="catdisp" id="catdisp">
+              </mat-form-field>
+            </div>
+          </div>
+  
+          <!--Lab Categories list value -->
+          <div *ngIf="isitemselected && islabitemselected" class="row">
+            <div class="col-12 col-lg-4 col-md-6">
+              <mat-form-field [style.fontSize.px]=14 class="match_parent"   >
+                <label>Category/Doctor Selected : </label>
+                <input matInput type="text" placeholder="Category or Doctor Selected" formControlName="catdisp" id="catdisp">
+              </mat-form-field>
+            </div>
+          </div>
+  
+        </form>
+  
+        <div *ngIf="!isitemselected" class="row justify-content-center mt-2">
+          <div class="col col-6 col-lg-6">
+            <button class="neo-mybutton match_parent" (click)="Add()">Add Promo</button>
+          </div>
+        </div>
+        <div *ngIf="isitemselected" class="row justify-content-center mt-2">
+          <div class="col col-6 col-lg-6">
+            <button class="neo-mybutton match_parent" (click)="Delete()" >Delete</button>
+          </div>
+          <!-- <div class="col col-6 col-lg-4">
+            <button class="neo-mybutton match_parent ml-3" (click)="Cancel()" >Cancel</button>
+          </div> -->
+        </div>
+      </div>
+  
+      <div *ngIf="isASR" class="white-top-orange-box mt-5" style="padding: 3%;">
+        <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+          <div class="col col-12 col-lg-12">
+  
+          <mat-table [dataSource]="MyDataSource">
+  
+          <ng-container matColumnDef="sno">
+            <mat-header-cell *matHeaderCellDef>  S.No  </mat-header-cell>
+            <mat-cell *matCellDef="let detail let i = index" > {{i+1}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="promocode">
+            <mat-header-cell *matHeaderCellDef>  Promo Code  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_code}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="enddate">
+            <mat-header-cell *matHeaderCellDef>  Expiry date  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_enddate}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="promocnt">
+            <mat-header-cell *matHeaderCellDef>  Promo Count  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_count}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="promoused">
+            <mat-header-cell *matHeaderCellDef>  Promo Used  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_used}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef>  Description  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_description}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="cat">
+            <mat-header-cell *matHeaderCellDef>  Category  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_cat}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="discount">
+            <mat-header-cell *matHeaderCellDef>  Discount(%)  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_discount}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="promotype">
+            <mat-header-cell *matHeaderCellDef>  Promo Type </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_type}} </mat-cell>
+          </ng-container>
+  
+          <mat-header-row *matHeaderRowDef="['sno','promocode','enddate','promocnt','promoused', 'description','cat','discount','promotype']; sticky: true"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['sno','promocode','enddate','promocnt','promoused', 'description','cat','discount','promotype']"></mat-row>
+          </mat-table>
+          </div>
+        </div>   
+      </div>
+  
+      <div  class="white-top-orange-box mt-5" style="padding: 2%;" *ngIf="!isASR"><!-- *ngIf="!isASR" -->
+        <div class="row docGenie-bkgrd justify-content-center" style="border-radius: 10px; padding: 2%;">
+          <div class="col col-12 col-lg-12">
+  
+          <mat-table [dataSource]="MyDataSource">
+  
+          <!-- Age Definition -->
+          <ng-container matColumnDef="sno">
+            <mat-header-cell *matHeaderCellDef>  S.No  </mat-header-cell>
+            <mat-cell *matCellDef="let detail let i = index" > {{i+1}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="promocode">
+            <mat-header-cell *matHeaderCellDef>  Promo Code  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_code}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="stdate">
+            <mat-header-cell *matHeaderCellDef>  Start Date  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_stdate}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="enddate">
+            <mat-header-cell *matHeaderCellDef>  End date  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_enddate}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="promocnt">
+            <mat-header-cell *matHeaderCellDef>  Promo Count  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_count}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="promoused">
+            <mat-header-cell *matHeaderCellDef>  Promo Used  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_used}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="description">
+            <mat-header-cell *matHeaderCellDef>  Description  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_description}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="cat">
+            <mat-header-cell *matHeaderCellDef>  Category  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_cat}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="discount">
+            <mat-header-cell *matHeaderCellDef>  Discount(%)  </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_discount}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="promotype">
+            <mat-header-cell *matHeaderCellDef>  Promo Type </mat-header-cell>
+            <mat-cell *matCellDef="let detail" > {{detail.promo_type}} </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="action">
+            <mat-header-cell  *matHeaderCellDef> Actions </mat-header-cell>
+            <mat-cell *matCellDef="let detail" >
+              <button class="neo-mybutton mr-3" (click)="Process(detail);scrollto(TOP)">Update</button>
+              </mat-cell>
+          </ng-container>
+  
+          <mat-header-row *matHeaderRowDef="['sno','promocode','stdate','enddate','promocnt','promoused', 'description','cat','discount','promotype','action']; sticky: true"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: ['sno','promocode','stdate','enddate','promocnt','promoused', 'description','cat','discount','promotype','action']"></mat-row>
+          </mat-table>
+          </div>
+        </div>   
+      </div>
+    </div>
+  </section>
+  

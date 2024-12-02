@@ -1,0 +1,30 @@
+
+    <div class="mt-15" style="padding: 4%;">
+         <div class="row justify-content-center" style="border-radius: 20px; padding: 2%;">
+        <div class="col col-12 col-lg-12">
+
+     <mat-table 
+     [dataSource]="MyDataSource">
+     <ng-container matColumnDef="Role">
+      <mat-header-cell *matHeaderCellDef>  User Role </mat-header-cell>
+      <mat-cell *matCellDef="let detail" > {{ detail.devDetRole === 'doctor' ? detail.docdet_name : detail.patdet_name }} </mat-cell>
+    </ng-container>
+     <ng-container matColumnDef="Starttime">
+        <mat-header-cell *matHeaderCellDef>  First Time  </mat-header-cell>
+        <mat-cell *matCellDef="let detail" > {{detail.FirstTime}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="Latesttime">
+        <mat-header-cell *matHeaderCellDef>  Recent Join Time  </mat-header-cell>
+        <mat-cell *matCellDef="let detail" > {{detail.ResTime}} </mat-cell>
+      </ng-container>
+     
+
+     <mat-header-row *matHeaderRowDef="['Role','Starttime','Latesttime']; sticky: true"></mat-header-row>
+     <mat-row *matRowDef="let row; columns: ['Role','Starttime','Latesttime']"></mat-row>
+     </mat-table>
+    </div>
+  </div>
+     <mat-dialog-actions align="end">
+         <button mat-raised-button color="primary" (click)="YesClick()">Ok</button>         
+     </mat-dialog-actions>
+</div>

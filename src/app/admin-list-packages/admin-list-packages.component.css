@@ -1,0 +1,76 @@
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+  .mat-mdc-card-title
+  {
+    color:#00a8cc;
+  }
+  .mat-mdc-card
+  {
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding-bottom: 10px;
+  }
+  ::ng-deep .mat-mdc-card
+  {
+    border: 2px solid #f36f21;
+  } 
+  mat-error{
+    font-size: 12px;
+  }  
+  .white-top-orange-box{
+    padding: 2%;
+  } 
+  label,.text-color{
+    text-align: left;
+    font-family: 'Roboto-Bold';
+    font-size: 16px;
+    margin-bottom: 2%;
+    color : #354c5c;
+  }
+  
+  input{
+    color :#8a8a8a;
+    border-radius: 5px;
+    padding : 3% 3%;
+    font-size: 14px;
+    border: 2px solid #354c5c !important;
+  } 
+  mat-row{
+    border-color: #d9e5f5;
+  }
+  mat-header-row{
+    border-top: 1px solid #d9e5f5;
+    border-bottom-width: 4px;
+    border-color: #d9e5f5;
+  }
+  mat-header-cell{
+    font-size: 16px;
+    font-family: 'Roboto-Bold';
+    color: #354c5c;
+  }
+  mat-cell{
+    font-size: 14px;
+    font-family: 'Roboto-Regular';
+    color: #354c5c;
+  }
+  @media only screen and (max-width: 768px) {
+    mat-cell:first-of-type,
+    mat-header-cell:first-of-type{
+      padding-left : 0px;
+    }
+  
+    mat-cell:last-of-type,
+    mat-header-cell:last-of-type{
+      padding-right : 0px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    mat-header-cell{
+      font-size: 14px;
+    }
+    mat-cell{
+      font-size: 12px;
+    }
+  }

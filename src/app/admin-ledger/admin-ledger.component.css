@@ -1,0 +1,63 @@
+#dashboard{
+    font-family: 'Roboto-Regular';
+    font-size: 16px;
+    padding-top: 3%;
+    text-align: left;
+    padding-bottom: 10%;
+  }
+  
+  .home-page-title{
+    text-align: center;
+  }
+  
+  ngx-select-dropdown
+  {
+    border-radius: 5px;
+    padding: 4%;
+  }
+
+  .blue-bkg{
+    color: white;
+  }
+  .dark{
+    font-weight: bold;
+  }
+  
+ .nav-link:hover{
+    color: #00a8cc;
+  }
+  .neo-flex{
+    display: flex;
+  }
+  .neo-mybutton{
+    padding: 10px 15px;
+  }
+  .form-text{
+    font-size : 14px;
+    text-align: left;
+  }
+
+  /* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  } 
+  ::ng-deep .mat-mdc-select{
+    font-size: 14px;
+  }
+  input
+  {
+    border: 2px solid #354c5c !important;
+    color :#8a8a8a;
+    border-radius: 5px;
+    padding : 4% 3%;
+  }
+  
+  table
+  {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  mat-footer-cell{
+    font-weight: bold;
+  }

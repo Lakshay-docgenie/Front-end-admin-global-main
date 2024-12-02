@@ -1,0 +1,99 @@
+/* TODO(mdc-migration): The following rule targets internal classes of form-field that may no longer apply for the MDC version. */
+  ::ng-deep .mat-form-field-underline {
+    display: none;
+  } 
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: white !important;
+  }   
+  .mat-mdc-card-title
+  {
+    color:#00a8cc;
+  }
+  .mat-mdc-card
+  {
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding-bottom: 10px;
+  }
+  ::ng-deep .mat-mdc-card
+  {
+    border: 2px solid #f36f21;
+  }
+  mat-error{
+    font-size: 12px;
+  }
+  mat-hint{
+    font-size: small;
+  }
+  .white-top-orange-box{
+    padding: 2%;
+  } 
+  label{
+    text-align: left;
+    font-family: 'Roboto-Bold';
+    font-size: 16px;
+    margin-bottom: 2%;
+    color : #354c5c;
+  }
+  input[type="file"]
+  {
+    visibility: hidden;
+    display: none;
+  } 
+  input,mat-select
+  {
+    color :#8a8a8a;
+    border-radius: 5px;
+    border: 2px solid #d9e5f5 !important;
+    padding: 2%;
+  }
+  ::ng-deep .mat-mdc-select-placeholder{
+    font-size: 14px;
+  }
+  mat-row{
+    border-color: #d9e5f5;
+  }
+  mat-cell .neo-mybutton{
+    padding: 7px 15px;
+  }
+  mat-header-row{
+    border-top: 1px solid #d9e5f5;
+    border-bottom-width: 4px;
+    border-color: #d9e5f5;
+  }
+  mat-header-cell{
+    font-size: 16px;
+    font-family: 'Roboto-Bold';
+    color: #354c5c;
+  }
+  mat-cell{
+    font-size: 14px;
+    font-family: 'Roboto-Regular';
+    color: #354c5c;
+  }
+  @media only screen and (max-width: 768px) {
+    mat-cell:first-of-type,
+    mat-header-cell:first-of-type{
+      padding-left : 0px;
+    }
+    mat-cell:last-of-type,
+    mat-header-cell:last-of-type{
+      padding-right : 0px;
+    }
+  } 
+  @media only screen and (max-width: 768px) {
+    mat-header-cell{
+      font-size: 14px;
+    } 
+    mat-cell{
+      font-size: 12px;
+    }
+  }
+  .example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  .example-radio-button {
+    margin: 5px;
+  }
